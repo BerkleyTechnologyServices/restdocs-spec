@@ -1,1 +1,1 @@
-# restdocs-openapi-maven-plugin
+# Restdocs OpenAPI Maven Plugin
