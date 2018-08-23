@@ -4,6 +4,10 @@ public class OpenApiParameter {
 
   private String name;
 
+  public OpenApiParameter() {
+
+  }
+
   public OpenApiParameter(String name) {
     this.name = name;
   }

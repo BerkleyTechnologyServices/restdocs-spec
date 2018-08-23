@@ -1,0 +1,16 @@
+{
+  "request": {
+    "path": "/user/{{id}}",
+    "httpMethod": "get",
+    "basePath": "/api",
+    "host": "api.example.org",
+    "pathParameters": [
+      {
+        "name": "id"
+      }
+    ]
+  },
+  "response": {
+
+  }
+}
