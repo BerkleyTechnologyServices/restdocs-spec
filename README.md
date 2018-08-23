@@ -1,0 +1,1 @@
+# restdocs-openapi-maven-plugin
