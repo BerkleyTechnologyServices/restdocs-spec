@@ -1,5 +1,1 @@
-import org.codehaus.plexus.util.FileUtils
-
-String buildLog = FileUtils.fileRead(new File(basedir, 'build.log'))
-
-assert buildLog.contains('Hello World!'): 'generate execution failed.'
+assert new File(basedir, "target/openapi-spec.yml").exists() : 'OpenAPI spec file was not created.'

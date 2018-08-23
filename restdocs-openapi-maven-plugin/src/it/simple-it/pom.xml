@@ -26,6 +26,9 @@
             <goals>
               <goal>generate</goal>
             </goals>
+            <configuration>
+              <snippetDirectory>${project.basedir}/openapi</snippetDirectory>
+            </configuration>
           </execution>
         </executions>
       </plugin>
