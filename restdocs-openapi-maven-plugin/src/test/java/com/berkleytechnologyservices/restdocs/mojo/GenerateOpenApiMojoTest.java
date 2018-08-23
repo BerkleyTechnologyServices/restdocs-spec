@@ -1,4 +1,4 @@
-package com.berkleytechnologyservices.maven.plugins;
+package com.berkleytechnologyservices.restdocs.mojo;
 
 import org.apache.maven.plugin.MojoExecutionException;
 import org.junit.jupiter.api.Test;
