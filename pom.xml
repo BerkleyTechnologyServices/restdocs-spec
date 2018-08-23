@@ -26,6 +26,7 @@
 
   <modules>
     <module>restdocs-openapi-maven-plugin</module>
+    <module>restdocs-openapi-model</module>
   </modules>
 
   <dependencyManagement>
