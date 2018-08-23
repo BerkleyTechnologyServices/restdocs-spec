@@ -1,3 +1,3 @@
-# Restdocs OpenAPI Maven Plugin
+# Restdocs OpenAPI Support
 
-[![Build Status](https://travis-ci.org/BerkleyTechnologyServices/restdocs-openapi-maven-plugin.svg?branch=master)](https://travis-ci.org/BerkleyTechnologyServices/restdocs-openapi-maven-plugin)
+[![Build Status](https://travis-ci.org/BerkleyTechnologyServices/restdocs-openapi.svg?branch=master)](https://travis-ci.org/BerkleyTechnologyServices/restdocs-openapi)

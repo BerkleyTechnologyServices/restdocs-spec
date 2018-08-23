@@ -1,6 +1,5 @@
 package com.berkleytechnologyservices.maven.plugins;
 
-
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
@@ -22,7 +21,6 @@ public class GenerateOpenApiMojo extends AbstractMojo {
   private File outputDirectory;
 
   public void execute() throws MojoExecutionException {
-    getLog().info("Hello World!");
-
+    System.out.println("Hello World!");
   }
 }
