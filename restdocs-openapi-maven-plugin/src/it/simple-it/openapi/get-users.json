@@ -1,0 +1,19 @@
+{
+  "request": {
+    "path": "/user",
+    "httpMethod": "get",
+    "basePath": "/api",
+    "host": "api.example.org",
+    "queryParameters": [
+      {
+        "name": "name"
+      },
+      {
+        "name": "role"
+      }
+    ]
+  },
+  "response": {
+    "status": 200
+  }
+}
