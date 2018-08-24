@@ -19,6 +19,19 @@ import java.util.List;
  */
 @Mojo(name = "generate", defaultPhase = LifecyclePhase.PREPARE_PACKAGE)
 public class GenerateMojo extends AbstractMojo {
+
+  /**
+   * Name of the API
+   */
+  @Parameter(defaultValue = "${project.artifactId}", required = true)
+  private String name;
+
+  /**
+   * Version of the API
+   */
+  @Parameter(defaultValue = "${project.version}", required = true)
+  private String version;
+
   /**
    * Restdocs Snippets directory
    */
@@ -88,7 +101,7 @@ public class GenerateMojo extends AbstractMojo {
   private void generateSpecification() throws MojoExecutionException {
     List<OpenApiModel> models = snippetReader.getModels(snippetDirectory);
     SpecificationGenerator generator = specificationGeneratorFactory.createGenerator(specification);
-    writeSpecificationToFile(generator.generate(models));
+    writeSpecificationToFile(generator.generate(new ApiDetails(name, version), models));
   }
 
   private void writeSpecificationToFile(String specification) throws MojoExecutionException {

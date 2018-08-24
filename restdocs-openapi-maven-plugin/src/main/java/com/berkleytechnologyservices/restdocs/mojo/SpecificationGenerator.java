@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface SpecificationGenerator {
   Specification getSpecification();
-  String generate(List<OpenApiModel> models);
+  String generate(ApiDetails details, List<OpenApiModel> models);
 }

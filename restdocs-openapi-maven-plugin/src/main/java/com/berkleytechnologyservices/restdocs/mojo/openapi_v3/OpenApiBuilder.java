@@ -44,9 +44,22 @@ public class OpenApiBuilder {
   private final Set<String> serverUrls;
   private final Map<String, PathItem> pathItems;
 
+  private String name;
+  private String version;
+
   public OpenApiBuilder() {
     this.serverUrls = new HashSet<>();
     this.pathItems = new HashMap<>();
+  }
+
+  public OpenApiBuilder name(String name) {
+    this.name = name;
+    return this;
+  }
+
+  public OpenApiBuilder version(String version) {
+    this.version = version;
+    return this;
   }
 
   public OpenApiBuilder serverUrl(String url) {
@@ -155,7 +168,7 @@ public class OpenApiBuilder {
 
   private Info createInfo() {
     return new Info()
-        .title("MyAPI")
-        .version("1.0.0");
+        .title(this.name != null ? this.name.trim().replaceAll("\\\\s", "-") : "api")
+        .version(this.version != null ? this.version : "1.0.0");
   }
 }
