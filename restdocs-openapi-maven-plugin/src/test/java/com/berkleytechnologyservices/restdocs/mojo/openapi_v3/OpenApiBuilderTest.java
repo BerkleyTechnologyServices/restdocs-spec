@@ -16,6 +16,7 @@ import java.util.Collections;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.entry;
+import static org.assertj.core.api.Assertions.tuple;
 
 @ExtendWith(MockitoExtension.class)
 public class OpenApiBuilderTest {
@@ -26,6 +27,7 @@ public class OpenApiBuilderTest {
   public void testBuild() {
     OpenApiParameter parameter = new OpenApiParameter();
     parameter.setName("id");
+    parameter.setType(Integer.class);
 
     OpenApiRequest request = new OpenApiRequest();
     request.setHost("api.example.org");
@@ -44,8 +46,12 @@ public class OpenApiBuilderTest {
     OpenAPI openAPI = builder.model(model).build();
     assertThat(openAPI.getServers()).containsExactly(new Server().url("http://api.example.org/api"));
     assertThat(openAPI.getPaths().get("/user/{id}")).isNotNull().satisfies(pathItem -> {
-      assertThat(pathItem.getGet().getParameters()).extracting(Parameter::getName).containsExactly("id");
-      assertThat(pathItem.getGet().getResponses()).hasSize(1).contains(entry("200", new ApiResponse().description("success")));
+      assertThat(pathItem.getGet().getParameters())
+          .extracting(Parameter::getName, (p) -> p.getSchema().getType())
+          .containsExactly(tuple("id", "integer"));
+      assertThat(pathItem.getGet().getResponses())
+          .hasSize(1)
+          .contains(entry("200", new ApiResponse().description("success")));
     });
   }
 }

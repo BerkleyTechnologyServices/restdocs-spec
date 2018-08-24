@@ -6,7 +6,8 @@
     "host": "api.example.org",
     "pathParameters": [
       {
-        "name": "id"
+        "name": "id",
+        "type": "java.lang.Integer"
       }
     ]
   },
