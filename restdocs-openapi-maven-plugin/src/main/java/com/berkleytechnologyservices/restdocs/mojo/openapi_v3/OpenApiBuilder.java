@@ -5,6 +5,7 @@ import com.berkleytechnologyservices.restdocs.model.OpenApiParameter;
 import com.berkleytechnologyservices.restdocs.model.OpenApiRequest;
 import com.berkleytechnologyservices.restdocs.model.OpenApiResponse;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Lists;
 import com.google.common.primitives.Primitives;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Operation;
@@ -101,10 +102,19 @@ public class OpenApiBuilder {
   private OpenApiBuilder model(OpenApiRequest request, OpenApiResponse response) {
     Operation operation = new Operation()
         .parameters(createParameters(request))
+        .tags(Lists.newArrayList(convertPathToTag(request)))
         .responses(new ApiResponses().addApiResponse(Integer.toString(response.getStatus()), new ApiResponse().description("success")));
     return this
         .serverUrl("http", request.getHost(), request.getBasePath())
         .operation(request.getPath(), request.getHttpMethod(), operation);
+  }
+
+  /**
+   * Turn /endpoint/{somePathParam}/somethingElse into "endpoint"
+   */
+  private String convertPathToTag(OpenApiRequest request) {
+    int secondSlashIndex = request.getPath().indexOf("/", 1);
+    return request.getPath().substring(1, secondSlashIndex >= 0 ? secondSlashIndex : request.getPath().length());
   }
 
   public OpenApiBuilder model(OpenApiModel model) {
