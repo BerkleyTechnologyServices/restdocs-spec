@@ -5,6 +5,7 @@ import com.berkleytechnologyservices.restdocs.model.OpenApiParameter;
 import com.berkleytechnologyservices.restdocs.model.OpenApiRequest;
 import com.berkleytechnologyservices.restdocs.model.OpenApiResponse;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.primitives.Primitives;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.PathItem;
@@ -16,7 +17,9 @@ import io.swagger.v3.oas.models.responses.ApiResponses;
 import io.swagger.v3.oas.models.servers.Server;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -28,14 +31,14 @@ public class OpenApiBuilder {
 
   private static final Map<Class<?>, Schema> TYPE_MAP = ImmutableMap.<Class<?>, Schema>builder()
       .put(String.class, new Schema().type("string"))
-      .put(Integer.class, new Schema().type("integer").format("int32"))
-      .put(int.class, new Schema().type("integer").format("int32"))
       .put(Boolean.class, new Schema().type("boolean"))
-      .put(boolean.class, new Schema().type("boolean"))
+      .put(Integer.class, new Schema().type("integer").format("int32"))
       .put(Long.class, new Schema().type("integer").format("int64"))
-      .put(long.class,  new Schema().type("integer").format("int64"))
-      .put(Float.class, new Schema().type("float"))
-      .put(float.class, new Schema().type("float"))
+      .put(Float.class, new Schema().type("number").format("float"))
+      .put(Double.class, new Schema().type("number").format("double"))
+      .put(Byte.class, new Schema().type("string").format("byte"))
+      .put(Date.class, new Schema().type("string").format("date-time"))
+      .put(Calendar.class, new Schema().type("string").format("date-time"))
       .build();
 
   private final Set<String> serverUrls;
@@ -147,7 +150,7 @@ public class OpenApiBuilder {
   }
 
   private Schema createSchema(Class<?> type) {
-    return TYPE_MAP.getOrDefault(type, new Schema().type("object"));
+    return TYPE_MAP.getOrDefault(Primitives.wrap(type), new Schema().type("object"));
   }
 
   private Info createInfo() {
