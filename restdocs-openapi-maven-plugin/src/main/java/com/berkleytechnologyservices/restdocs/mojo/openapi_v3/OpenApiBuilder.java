@@ -26,16 +26,16 @@ import java.util.stream.Collectors;
 
 public class OpenApiBuilder {
 
-  private static final Map<Class<?>, String> TYPE_MAP = ImmutableMap.<Class<?>, String>builder()
-      .put(String.class, "string")
-      .put(Integer.class, "integer")
-      .put(int.class, "integer")
-      .put(Boolean.class, "boolean")
-      .put(boolean.class, "boolean")
-      .put(Long.class, "long")
-      .put(long.class, "long")
-      .put(Float.class, "float")
-      .put(float.class, "float")
+  private static final Map<Class<?>, Schema> TYPE_MAP = ImmutableMap.<Class<?>, Schema>builder()
+      .put(String.class, new Schema().type("string"))
+      .put(Integer.class, new Schema().type("integer").format("int32"))
+      .put(int.class, new Schema().type("integer").format("int32"))
+      .put(Boolean.class, new Schema().type("boolean"))
+      .put(boolean.class, new Schema().type("boolean"))
+      .put(Long.class, new Schema().type("integer").format("int64"))
+      .put(long.class,  new Schema().type("integer").format("int64"))
+      .put(Float.class, new Schema().type("float"))
+      .put(float.class, new Schema().type("float"))
       .build();
 
   private final Set<String> serverUrls;
@@ -147,7 +147,7 @@ public class OpenApiBuilder {
   }
 
   private Schema createSchema(Class<?> type) {
-    return new Schema().type(TYPE_MAP.getOrDefault(type, "object"));
+    return TYPE_MAP.getOrDefault(type, new Schema().type("object"));
   }
 
   private Info createInfo() {
