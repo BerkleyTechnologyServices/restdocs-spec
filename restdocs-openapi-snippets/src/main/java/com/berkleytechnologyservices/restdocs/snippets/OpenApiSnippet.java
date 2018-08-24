@@ -67,7 +67,7 @@ public class OpenApiSnippet implements Snippet {
   private OpenApiRequest buildRequestAttributes(Operation operation) {
     OpenApiRequest request = new OpenApiRequest();
     MockHttpServletRequest servletRequest = (MockHttpServletRequest) operation.getAttributes().get(MockHttpServletRequest.class.getName());
-    String urlTemplate = (String) operation.getAttributes().get("org.springframework.restdocs.urlTemplate");
+    String urlTemplate = (String) servletRequest.getAttribute("org.springframework.web.servlet.HandlerMapping.bestMatchingPattern");
     final String methodPath;
     if (urlTemplate != null) {
       int requestParamIndex = urlTemplate.indexOf(QUERY_DELIMITER) >= 0 ? urlTemplate.indexOf(QUERY_DELIMITER) : urlTemplate.length();
