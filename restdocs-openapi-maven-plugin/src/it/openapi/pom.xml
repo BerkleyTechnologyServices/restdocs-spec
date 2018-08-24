@@ -25,7 +25,7 @@
               <goal>generate</goal>
             </goals>
             <configuration>
-              <snippetDirectory>${project.basedir}/openapi</snippetDirectory>
+              <snippetDirectory>${project.basedir}/snippets</snippetDirectory>
             </configuration>
           </execution>
         </executions>
