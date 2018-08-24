@@ -47,7 +47,7 @@ public class GenerateMojo extends AbstractMojo {
   /**
    * OpenAPI spec file name
    */
-  @Parameter(defaultValue = "openapi-spec.yml", property = "filename", required = true)
+  @Parameter(defaultValue = "api-spec", property = "filename", required = true)
   private String filename;
 
   /**
@@ -99,17 +99,23 @@ public class GenerateMojo extends AbstractMojo {
   }
 
   private void generateSpecification() throws MojoExecutionException {
-    List<OpenApiModel> models = snippetReader.getModels(snippetDirectory);
-    SpecificationGenerator generator = specificationGeneratorFactory.createGenerator(specification);
-    writeSpecificationToFile(generator.generate(new ApiDetails(name, version), models));
+    writeSpecificationToFile(generateSpecification(snippetReader.getModels(snippetDirectory)));
   }
 
-  private void writeSpecificationToFile(String specification) throws MojoExecutionException {
-    Path filePath = new File(outputDirectory, filename).toPath();
+  private String generateSpecification(List<OpenApiModel> models) throws MojoExecutionException {
     try {
-      Files.write(filePath, specification.getBytes());
+      return specificationGeneratorFactory.createGenerator(specification).generate(new ApiDetails(name, version), models);
+    } catch (SpecificationGeneratorException e) {
+      throw new MojoExecutionException("Unable to generate specification.", e);
+    }
+  }
+
+  private void writeSpecificationToFile(String outputString) throws MojoExecutionException {
+    Path filePath = new File(outputDirectory, filename + specification.getExtension()).toPath();
+    try {
+      Files.write(filePath, outputString.getBytes());
     } catch (IOException e) {
-      throw new MojoExecutionException("Unable to write specification file: " + filePath);
+      throw new MojoExecutionException("Unable to write outputString file: " + filePath);
     }
   }
 }
