@@ -21,8 +21,6 @@
         <version>@project.version@</version>
         <executions>
           <execution>
-            <id>generate</id>
-            <phase>validate</phase>
             <goals>
               <goal>generate</goal>
             </goals>

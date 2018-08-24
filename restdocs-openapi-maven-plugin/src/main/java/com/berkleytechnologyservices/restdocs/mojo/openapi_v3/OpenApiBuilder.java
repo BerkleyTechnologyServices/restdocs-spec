@@ -1,20 +1,25 @@
-package com.berkleytechnologyservices.restdocs.mojo;
+package com.berkleytechnologyservices.restdocs.mojo.openapi_v3;
 
+import com.berkleytechnologyservices.restdocs.model.OpenApiModel;
 import com.berkleytechnologyservices.restdocs.model.OpenApiParameter;
 import com.berkleytechnologyservices.restdocs.model.OpenApiRequest;
+import com.berkleytechnologyservices.restdocs.model.OpenApiResponse;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.PathItem;
 import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.parameters.Parameter;
+import io.swagger.v3.oas.models.responses.ApiResponse;
+import io.swagger.v3.oas.models.responses.ApiResponses;
 import io.swagger.v3.oas.models.servers.Server;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class OpenApiBuilder {
 
@@ -62,47 +67,54 @@ public class OpenApiBuilder {
     return this;
   }
 
-  public OpenApiBuilder request(OpenApiRequest request) {
-    Operation operation = new Operation();
-    operation.setParameters(convertParameters(request.getPathParameters()));
+  private OpenApiBuilder model(OpenApiRequest request, OpenApiResponse response) {
+    Operation operation = new Operation()
+        .parameters(createParameters(request.getPathParameters()))
+        .responses(new ApiResponses().addApiResponse(Integer.toString(response.getStatus()), new ApiResponse().description("success")));
     return this
         .serverUrl("http", request.getHost(), request.getBasePath())
         .operation(request.getPath(), request.getHttpMethod(), operation);
   }
 
+  public OpenApiBuilder model(OpenApiModel model) {
+    return this.model(model.getRequest(), model.getResponse());
+  }
+
   public OpenAPI build() {
-    OpenAPI openAPI = new OpenAPI();
-    openAPI.setInfo(new Info());
+    OpenAPI openAPI = new OpenAPI()
+        .info(createInfo())
+        .openapi("3.0.0")
+        .servers(createServerList(this.serverUrls));
 
-    openAPI.setOpenapi("3.0");
-    openAPI.setServers(createServerList(this.serverUrls));
-
-    for (Map.Entry<String, PathItem> entry : pathItems.entrySet()) {
-      openAPI.path(entry.getKey(), entry.getValue());
-    }
+    pathItems.forEach(openAPI::path);
 
     return openAPI;
   }
 
   private List<Server> createServerList(Set<String> serverPaths) {
-    List<Server> servers = new ArrayList<Server>();
-    for (String serverPath : serverPaths) {
-      Server server = new Server();
-      server.setUrl(serverPath);
-      servers.add(server);
-    }
-    return servers;
+    return serverPaths.stream().map(this::createServer).collect(Collectors.toList());
   }
 
-  private List<Parameter> convertParameters(List<OpenApiParameter> openApiParameters) {
-    List<Parameter> parameters = new ArrayList<>();
-    for (OpenApiParameter openApiParameter : openApiParameters) {
-      Parameter parameter = new Parameter();
-      parameter.setName(openApiParameter.getName());
-      parameter.setRequired(true);
-      parameter.setDescription("The " + openApiParameter.getName() + " parameter");
-      parameters.add(parameter);
-    }
-    return parameters;
+  private List<Parameter> createParameters(List<OpenApiParameter> openApiParameters) {
+    return openApiParameters.stream().map(this::createParameter).collect(Collectors.toList());
+  }
+
+  public Server createServer(String serverPath) {
+    return new Server().url(serverPath);
+  }
+
+  public Parameter createParameter(OpenApiParameter openApiParameter) {
+    return new Parameter()
+        .name(openApiParameter.getName())
+        .required(true)
+        .description("The " + openApiParameter.getName() + " parameter")
+        .in("path")
+        .schema(new Schema().type("string"));
+  }
+
+  private Info createInfo() {
+    return new Info()
+        .title("My API")
+        .version("1.0.0");
   }
 }
