@@ -14,6 +14,8 @@ import io.swagger.v3.oas.models.responses.ApiResponse;
 import io.swagger.v3.oas.models.responses.ApiResponses;
 import io.swagger.v3.oas.models.servers.Server;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -69,7 +71,7 @@ public class OpenApiBuilder {
 
   private OpenApiBuilder model(OpenApiRequest request, OpenApiResponse response) {
     Operation operation = new Operation()
-        .parameters(createParameters(request.getPathParameters()))
+        .parameters(createParameters(request))
         .responses(new ApiResponses().addApiResponse(Integer.toString(response.getStatus()), new ApiResponse().description("success")));
     return this
         .serverUrl("http", request.getHost(), request.getBasePath())
@@ -95,26 +97,45 @@ public class OpenApiBuilder {
     return serverPaths.stream().map(this::createServer).collect(Collectors.toList());
   }
 
-  private List<Parameter> createParameters(List<OpenApiParameter> openApiParameters) {
-    return openApiParameters.stream().map(this::createParameter).collect(Collectors.toList());
-  }
-
   public Server createServer(String serverPath) {
     return new Server().url(serverPath);
   }
 
-  public Parameter createParameter(OpenApiParameter openApiParameter) {
+  private List<Parameter> createParameters(OpenApiRequest request) {
+    List<Parameter> parameters = new ArrayList<>();
+    parameters.addAll(createPathParameters(request.getPathParameters()));
+    parameters.addAll(createQueryParameters(request.getQueryParameters()));
+    return parameters;
+  }
+
+  private List<Parameter> createPathParameters(List<OpenApiParameter> openApiParameters) {
+    return openApiParameters != null ? openApiParameters.stream().map(this::createPathParameter).collect(Collectors.toList()) : Collections.emptyList();
+  }
+
+  public Parameter createPathParameter(OpenApiParameter openApiParameter) {
+    return createParameter(openApiParameter, "path");
+  }
+
+  private List<Parameter> createQueryParameters(List<OpenApiParameter> openApiParameters) {
+    return openApiParameters != null ? openApiParameters.stream().map(this::createQueryParameter).collect(Collectors.toList()) : Collections.emptyList();
+  }
+
+  public Parameter createQueryParameter(OpenApiParameter openApiParameter) {
+    return createParameter(openApiParameter, "query");
+  }
+
+  public Parameter createParameter(OpenApiParameter openApiParameter, String in) {
     return new Parameter()
         .name(openApiParameter.getName())
         .required(true)
         .description("The " + openApiParameter.getName() + " parameter")
-        .in("path")
+        .in(in)
         .schema(new Schema().type("string"));
   }
 
   private Info createInfo() {
     return new Info()
-        .title("My API")
+        .title("MyAPI")
         .version("1.0.0");
   }
 }
