@@ -6,10 +6,12 @@
     "host": "api.example.org",
     "queryParameters": [
       {
-        "name": "name"
+        "name": "name",
+        "type": "java.lang.String"
       },
       {
-        "name": "role"
+        "name": "role",
+        "type": "java.lang.String"
       }
     ]
   },

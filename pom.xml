@@ -58,6 +58,11 @@
         <scope>provided</scope>
       </dependency>
       <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>26.0-jre</version>
+      </dependency>
+      <dependency>
         <groupId>io.swagger.core.v3</groupId>
         <artifactId>swagger-core</artifactId>
         <version>${swagger.version}</version>

@@ -4,6 +4,7 @@ import com.berkleytechnologyservices.restdocs.model.OpenApiModel;
 import com.berkleytechnologyservices.restdocs.model.OpenApiParameter;
 import com.berkleytechnologyservices.restdocs.model.OpenApiRequest;
 import com.berkleytechnologyservices.restdocs.model.OpenApiResponse;
+import com.google.common.collect.ImmutableMap;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Operation;
 import io.swagger.v3.oas.models.PathItem;
@@ -24,6 +25,18 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class OpenApiBuilder {
+
+  private static final Map<Class<?>, String> TYPE_MAP = ImmutableMap.<Class<?>, String>builder()
+      .put(String.class, "string")
+      .put(Integer.class, "integer")
+      .put(int.class, "integer")
+      .put(Boolean.class, "boolean")
+      .put(boolean.class, "boolean")
+      .put(Long.class, "long")
+      .put(long.class, "long")
+      .put(Float.class, "float")
+      .put(float.class, "float")
+      .build();
 
   private final Set<String> serverUrls;
   private final Map<String, PathItem> pathItems;
@@ -130,7 +143,11 @@ public class OpenApiBuilder {
         .required(true)
         .description("The " + openApiParameter.getName() + " parameter")
         .in(in)
-        .schema(new Schema().type("string"));
+        .schema(createSchema(openApiParameter.getType()));
+  }
+
+  private Schema createSchema(Class<?> type) {
+    return new Schema().type(TYPE_MAP.getOrDefault(type, "object"));
   }
 
   private Info createInfo() {

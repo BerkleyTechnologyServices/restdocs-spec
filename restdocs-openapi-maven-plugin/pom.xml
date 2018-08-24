@@ -42,6 +42,10 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+    </dependency>
+    <dependency>
       <groupId>io.swagger.core.v3</groupId>
       <artifactId>swagger-core</artifactId>
     </dependency>
