@@ -3,13 +3,15 @@ package com.berkleytechnologyservices.restdocs.model;
 public class OpenApiParameter {
 
   private String name;
+  private Class type;
 
   public OpenApiParameter() {
 
   }
 
-  public OpenApiParameter(String name) {
+  public OpenApiParameter(String name, Class type) {
     this.name = name;
+    this.type = type;
   }
 
   public String getName() {
@@ -20,4 +22,11 @@ public class OpenApiParameter {
     this.name = name;
   }
 
+  public Class getType() {
+    return type;
+  }
+
+  public void setType(Class type) {
+    this.type = type;
+  }
 }
