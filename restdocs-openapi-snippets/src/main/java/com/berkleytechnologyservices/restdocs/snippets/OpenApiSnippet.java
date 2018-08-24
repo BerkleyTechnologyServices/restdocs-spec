@@ -5,24 +5,30 @@ import com.berkleytechnologyservices.restdocs.model.OpenApiParameter;
 import com.berkleytechnologyservices.restdocs.model.OpenApiRequest;
 import com.berkleytechnologyservices.restdocs.model.OpenApiResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.core.MethodParameter;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.restdocs.RestDocumentationContext;
 import org.springframework.restdocs.operation.Operation;
 import org.springframework.restdocs.snippet.Snippet;
 import org.springframework.restdocs.snippet.WriterResolver;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.web.method.HandlerMethod;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.StringTokenizer;
+import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class OpenApiSnippet implements Snippet {
 
   private static final String QUERY_DELIMITER = "?";
+  private static final String RESULT_ATTR = "org.springframework.test.web.servlet.MockMvc.MVC_RESULT_ATTRIBUTE";
 
   @Override
   public void document(Operation operation) throws IOException {
@@ -67,28 +73,42 @@ public class OpenApiSnippet implements Snippet {
   private OpenApiRequest buildRequestAttributes(Operation operation) {
     OpenApiRequest request = new OpenApiRequest();
     MockHttpServletRequest servletRequest = (MockHttpServletRequest) operation.getAttributes().get(MockHttpServletRequest.class.getName());
-    String urlTemplate = (String) servletRequest.getAttribute("org.springframework.web.servlet.HandlerMapping.bestMatchingPattern");
-    final String methodPath;
-    if (urlTemplate != null) {
-      int requestParamIndex = urlTemplate.indexOf(QUERY_DELIMITER) >= 0 ? urlTemplate.indexOf(QUERY_DELIMITER) : urlTemplate.length();
-      methodPath = urlTemplate.substring(0, requestParamIndex);
-    } else {
-      methodPath = servletRequest.getPathInfo();
-    }
+    HandlerMethod handlerMethod = (HandlerMethod) ((MvcResult) servletRequest.getAttribute(RESULT_ATTR)).getHandler();
+    Map<String, Class> allParameters = Arrays.stream(handlerMethod.getMethodParameters())
+                                           .collect(Collectors.toMap(MethodParameter::getParameterName, MethodParameter::getParameterType));
 
     Map<String, Object> pathVariables = (Map<String, Object>) servletRequest.getAttribute("org.springframework.web.servlet.View.pathVariables");
     request.setPathParameters(pathVariables != null ? getPathParameters(pathVariables) : new ArrayList<>());
-
-    // TODO : Infer types of query params
-    request.setQueryParameters(servletRequest.getParameterMap().keySet().stream()
-                                   .map(p -> new OpenApiParameter(p, Object.class))
-                                   .collect(Collectors.toList()));
+    request.setQueryParameters(getQueryParameters(servletRequest.getParameterMap().keySet(), allParameters));
     request.setBasePath(servletRequest.getContextPath());
     request.setHost(operation.getRequest().getUri().getHost());
     request.setHttpMethod(operation.getRequest().getMethod().name());
-    request.setPath(methodPath.replaceAll(request.getBasePath(), ""));
+    request.setPath(getMethodPath(servletRequest, request.getBasePath()));
 
     return request;
+  }
+
+  private String getMethodPath(MockHttpServletRequest servletRequest, String basePath) {
+    String methodPath = (String) servletRequest.getAttribute("org.springframework.web.servlet.HandlerMapping.bestMatchingPattern");
+    if (methodPath == null) {
+      methodPath = servletRequest.getPathInfo();
+    }
+    return methodPath.replaceAll(basePath, "");
+  }
+
+  private List<OpenApiParameter> getQueryParameters(Set<String> queryParameterNames, Map<String, Class> allParameters) {
+    // currently unable to correctly determine types of query parameters when using custom HandlerMethodArgumentResolver.
+    // In these scenarios, just use Object.class for parmeter type
+    List<OpenApiParameter> parameters = new ArrayList<>();
+    for (String queryParameterName : queryParameterNames) {
+      Class type = allParameters.entrySet().stream()
+                       .filter(p -> p.getKey().equals(queryParameterName))
+                       .findFirst()
+                       .map(p -> p.getValue())
+                       .orElse(Object.class);
+      parameters.add(new OpenApiParameter(queryParameterName, type));
+    }
+    return parameters;
   }
 
   private List<OpenApiParameter> getPathParameters(Map<String, Object> pathVariableValues) {
