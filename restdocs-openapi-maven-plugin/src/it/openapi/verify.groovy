@@ -1,1 +1,0 @@
-assert new File(basedir, "target/api-spec.yml").exists() : 'spec file was not created.'

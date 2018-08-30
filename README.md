@@ -1,3 +1,90 @@
-# Restdocs OpenAPI Support
+# Restdocs Spec Generation Support
 
-[![Build Status](https://travis-ci.org/BerkleyTechnologyServices/restdocs-openapi.svg?branch=master)](https://travis-ci.org/BerkleyTechnologyServices/restdocs-openapi)
+[![Build Status](https://travis-ci.org/BerkleyTechnologyServices/restdocs-spec.svg?branch=master)](https://travis-ci.org/BerkleyTechnologyServices/restdocs-spec)
+
+## Usage
+
+First head over to the [ePages-de/restdocs-openapi](https://github.com/ePages-de/restdocs-openapi) project
+and following the instructions for setting up the Spring REST Docs extension.  That extension will produce
+`resource.json` files for each of your documented resources.  You'll also notice that project provides
+a gradle plugin that can be used to read all the `resource.json` files and turn them into an OpenAPI spec
+file.  That is exactly what this project does as well, only in the form of a maven plugin instead.
+
+Here is a typical `pom.xml` configuration:
+
+```xml
+  <plugin>
+    <groupId>com.berkleytechnologyservices.restdocs</groupId>
+    <artifactId>restdocs-spec-maven-plugin</artifactId>
+    <version>0.1</version>
+    <executions>
+      <execution>
+        <goals>
+          <goal>generate</goal>
+        </goals>
+      </execution>
+    </executions>
+  </plugin>
+``` 
+
+That will read your `resource.json` snippet files found under the `${project.build.directory}/generated-snippets` 
+directory and produce an OpenAPI 2.0 YAML file at `${project.build.directory}/restdocs-spec/openapi-2.0.yml`.
+
+If you would prefer that the OpenAPI 2.0 document is in JSON format you can specify it like this:
+
+```xml
+  <plugin>
+    <groupId>com.berkleytechnologyservices.restdocs</groupId>
+    <artifactId>restdocs-spec-maven-plugin</artifactId>
+    <version>0.1</version>
+    <executions>
+      <execution>
+        <goals>
+          <goal>generate</goal>
+        </goals>
+        <configuration>
+          <format>JSON</format>
+        </configuration>
+      </execution>
+    </executions>
+  </plugin>
+```
+
+There are several other aspects you can optionally configure.  Here is the full set of options with their default values:
+
+```xml
+  <plugin>
+    <groupId>com.berkleytechnologyservices.restdocs</groupId>
+    <artifactId>restdocs-spec-maven-plugin</artifactId>
+    <version>0.1</version>
+    <executions>
+      <execution>
+        <goals>
+          <goal>generate</goal>
+        </goals>
+        <configuration>
+          <name>${project.artifactId}</name>
+          <version>${project.version}</version>
+          <host>localhost</host>
+          <basePath></basePath>
+          <schemes>
+            <scheme>http</scheme>
+          </schemes>
+          <snippetDirectory>${project.build.directory}/generated-snippets</snippetDirectory>
+          <outputDirectory>${project.build.directory}/restdocs-spec</outputDirectory>
+          <skip>false</skip>
+          <format>JSON</format>
+          <filename>openapi-2.0</filename>
+        </configuration>
+      </execution>
+    </executions>
+  </plugin>
+```
+
+# Still in development
+
+* Support for additional specification formats is currently in development.  We plan to add 
+  support for OpenAPI 3.0 and Postman Collections.
+* Currently the plugin is not available in Maven Central.  However, we will be making it 
+  available through [JitPack](https://jitpack.io/) with plans to eventually get it into 
+  Maven Central.
