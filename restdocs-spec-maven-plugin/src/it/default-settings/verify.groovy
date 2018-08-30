@@ -1,0 +1,1 @@
+assert new File(basedir, "target/restdocs-spec/openapi-2.0.yml").exists() : 'Spec file was not found at the expected location'

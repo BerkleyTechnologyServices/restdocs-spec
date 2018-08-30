@@ -1,0 +1,67 @@
+{
+  "operationId" : "cart-get",
+  "summary" : "Get a cart by id",
+  "description" : "Get a cart by id",
+  "privateResource" : false,
+  "deprecated" : false,
+  "request" : {
+    "path" : "/carts/{id}",
+    "method" : "GET",
+    "contentType" : null,
+    "headers" : [ ],
+    "pathParameters" : [ {
+      "name" : "id",
+      "description" : "the cart id",
+      "ignored" : false,
+      "type" : "STRING",
+      "optional" : false
+    } ],
+    "requestParameters" : [ ],
+    "requestFields" : [ ],
+    "example" : null,
+    "securityRequirements" : null
+  },
+  "response" : {
+    "status" : 200,
+    "contentType" : "application/hal+json",
+    "headers" : [ ],
+    "responseFields" : [ {
+      "description" : "Total amount of the cart.",
+      "ignored" : false,
+      "path" : "total",
+      "type" : "NUMBER",
+      "optional" : false
+    }, {
+      "description" : "The product line item of the cart.",
+      "ignored" : false,
+      "path" : "products",
+      "type" : "ARRAY",
+      "optional" : false
+    }, {
+      "description" : "Link to the product.",
+      "ignored" : false,
+      "path" : "products[]._links.product",
+      "type" : "OBJECT",
+      "optional" : false
+    }, {
+      "description" : "The quantity of the line item.",
+      "ignored" : false,
+      "path" : "products[].quantity",
+      "type" : "NUMBER",
+      "optional" : false
+    }, {
+      "description" : "The product the line item relates to.",
+      "ignored" : false,
+      "path" : "products[].product",
+      "type" : "OBJECT",
+      "optional" : false
+    }, {
+      "description" : "Links section.",
+      "ignored" : false,
+      "path" : "_links",
+      "type" : "OBJECT",
+      "optional" : false
+    } ],
+    "example" : "{\r\n  \"total\" : 49.99,\r\n  \"products\" : [ {\r\n    \"quantity\" : 1,\r\n    \"product\" : {\r\n      \"name\" : \"Fancy pants\",\r\n      \"price\" : 49.99\r\n    },\r\n    \"_links\" : {\r\n      \"product\" : {\r\n        \"href\" : \"http://localhost:8080/products/2\"\r\n      }\r\n    }\r\n  } ],\r\n  \"_links\" : {\r\n    \"self\" : {\r\n      \"href\" : \"http://localhost:8080/carts/2\"\r\n    },\r\n    \"order\" : {\r\n      \"href\" : \"http://localhost:8080/carts/2/order\"\r\n    }\r\n  }\r\n}"
+  }
+}

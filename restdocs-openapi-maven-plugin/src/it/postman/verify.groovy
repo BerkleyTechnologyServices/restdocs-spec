@@ -1,1 +1,0 @@
-assert new File(basedir, "target/api-spec.json").exists() : 'spec file was not created.'

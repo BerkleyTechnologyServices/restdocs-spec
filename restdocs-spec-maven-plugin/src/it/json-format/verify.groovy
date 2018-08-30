@@ -1,0 +1,1 @@
+assert new File(basedir, "target/restdocs-spec/sample-api-spec.json").exists() : 'Spec file was not found at the expected location'
