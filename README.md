@@ -1,6 +1,7 @@
 # Restdocs Spec Generation Support
 
 [![Build Status](https://travis-ci.org/BerkleyTechnologyServices/restdocs-spec.svg?branch=master)](https://travis-ci.org/BerkleyTechnologyServices/restdocs-spec)
+[![Release](https://jitpack.io/v/berkleytechnologyservices/restdocs-spec.svg)](https://jitpack.io/#berkleytechnologyservices/restdocs-spec)
 
 ## Usage
 
@@ -14,7 +15,7 @@ Here is a typical `pom.xml` configuration:
 
 ```xml
   <plugin>
-    <groupId>com.berkleytechnologyservices.restdocs</groupId>
+    <groupId>com.github.berkleytechnologyservices.restdocs-spec</groupId>
     <artifactId>restdocs-spec-maven-plugin</artifactId>
     <version>0.1</version>
     <executions>
@@ -34,7 +35,7 @@ If you would prefer that the OpenAPI 2.0 document is in JSON format you can spec
 
 ```xml
   <plugin>
-    <groupId>com.berkleytechnologyservices.restdocs</groupId>
+    <groupId>com.github.berkleytechnologyservices.restdocs-spec</groupId>
     <artifactId>restdocs-spec-maven-plugin</artifactId>
     <version>0.1</version>
     <executions>
@@ -54,7 +55,7 @@ There are several other aspects you can optionally configure.  Here is the full 
 
 ```xml
   <plugin>
-    <groupId>com.berkleytechnologyservices.restdocs</groupId>
+    <groupId>com.github.berkleytechnologyservices.restdocs-spec</groupId>
     <artifactId>restdocs-spec-maven-plugin</artifactId>
     <version>0.1</version>
     <executions>
