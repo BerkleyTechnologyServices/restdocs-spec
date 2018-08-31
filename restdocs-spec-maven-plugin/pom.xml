@@ -6,7 +6,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.github.berkleytechnologyservices.restdocs</groupId>
+    <groupId>com.github.berkleytechnologyservices.restdocs-spec</groupId>
     <artifactId>restdocs-spec</artifactId>
     <version>0.3-SNAPSHOT</version>
   </parent>

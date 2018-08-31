@@ -17,7 +17,7 @@ Here is a typical `pom.xml` configuration:
   <plugin>
     <groupId>com.github.berkleytechnologyservices.restdocs-spec</groupId>
     <artifactId>restdocs-spec-maven-plugin</artifactId>
-    <version>0.1</version>
+    <version>${restdocs-spec.version}</version>
     <executions>
       <execution>
         <goals>
@@ -37,7 +37,7 @@ If you would prefer that the OpenAPI 2.0 document is in JSON format you can spec
   <plugin>
     <groupId>com.github.berkleytechnologyservices.restdocs-spec</groupId>
     <artifactId>restdocs-spec-maven-plugin</artifactId>
-    <version>0.1</version>
+    <version>${restdocs-spec.version}</version>
     <executions>
       <execution>
         <goals>
@@ -57,7 +57,7 @@ There are several other aspects you can optionally configure.  Here is the full 
   <plugin>
     <groupId>com.github.berkleytechnologyservices.restdocs-spec</groupId>
     <artifactId>restdocs-spec-maven-plugin</artifactId>
-    <version>0.1</version>
+    <version>${restdocs-spec.version}</version>
     <executions>
       <execution>
         <goals>
@@ -86,6 +86,5 @@ There are several other aspects you can optionally configure.  Here is the full 
 
 * Support for additional specification formats is currently in development.  We plan to add 
   support for OpenAPI 3.0 and Postman Collections.
-* Currently the plugin is not available in Maven Central.  However, we will be making it 
-  available through [JitPack](https://jitpack.io/) with plans to eventually get it into 
-  Maven Central.
+* Currently the plugin is not available in Maven Central.  However, it is available through
+  [JitPack](https://jitpack.io/) and we do plan to eventually get it into Maven Central.
