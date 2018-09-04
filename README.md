@@ -76,13 +76,54 @@ There are several other aspects you can optionally configure.  Here is the full 
           <skip>false</skip>
           <format>JSON</format>
           <filename>openapi-2.0</filename>
+          <oauth2 />
         </configuration>
       </execution>
     </executions>
   </plugin>
 ```
 
-# Still in development
+### OAuth2 Configuration
+
+By default the plugin will not generate any security information.  You can optionally provide
+it using the `<oauth2 />` element.  Here is an example:
+
+```xml
+  <plugin>
+    <groupId>com.github.berkleytechnologyservices.restdocs-spec</groupId>
+    <artifactId>restdocs-spec-maven-plugin</artifactId>
+    <version>${restdocs-spec.version}</version>
+    <executions>
+      <execution>
+        <goals>
+          <goal>generate</goal>
+        </goals>
+        <configuration>
+          <oauth>
+            <tokenUrl>http://example.com/uaa/token</tokenUrl>
+            <authorizationUrl>http://example.com/uaa/authorize</authorizationUrl>
+            <flows>
+              <flow>accessCode</flow>
+              <flow>implicit</flow>
+            </flows>
+            <scopes>
+              <scope>
+                <name>read</name>
+                <description>Access to read operations.</description>
+              </scope>            
+              <scope>
+                <name>write</name>
+                <description>Access to write operations.</description>
+              </scope>
+            </scopes>
+          </oauth>
+        </configuration>
+      </execution>
+    </executions>
+  </plugin>
+```
+
+## Still in development
 
 * Support for additional specification formats is currently in development.  We plan to add 
   support for OpenAPI 3.0 and Postman Collections.

@@ -1,6 +1,7 @@
 package com.berkleytechnologyservices.restdocs.mojo;
 
 import com.berkleytechnologyservices.restdocs.spec.ApiDetails;
+import com.berkleytechnologyservices.restdocs.spec.AuthConfig;
 import com.berkleytechnologyservices.restdocs.spec.Specification;
 import com.berkleytechnologyservices.restdocs.spec.SpecificationFormat;
 import com.berkleytechnologyservices.restdocs.spec.generator.SpecificationGeneratorException;
@@ -100,6 +101,9 @@ public class GenerateMojo extends AbstractMojo {
   @Parameter
   private List<SpecificationOptions> specifications = Collections.emptyList();
 
+  @Parameter
+  private AuthConfig oauth2 = new AuthConfig();
+
   private final SnippetReader snippetReader;
   private final SpecificationGeneratorFactory specificationGeneratorFactory;
 
@@ -188,7 +192,8 @@ public class GenerateMojo extends AbstractMojo {
         .host(host)
         .basePath(basePath)
         .schemes(schemes)
-        .format(options.getFormat());
+        .format(options.getFormat())
+        .authConfig(oauth2);
   }
 
   private List<SpecificationOptions> getAllSpecificationOptions() {

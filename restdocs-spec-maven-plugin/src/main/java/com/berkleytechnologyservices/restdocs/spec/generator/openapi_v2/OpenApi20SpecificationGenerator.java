@@ -1,10 +1,13 @@
 package com.berkleytechnologyservices.restdocs.spec.generator.openapi_v2;
 
 import com.berkleytechnologyservices.restdocs.spec.ApiDetails;
+import com.berkleytechnologyservices.restdocs.spec.AuthConfig;
+import com.berkleytechnologyservices.restdocs.spec.Scope;
 import com.berkleytechnologyservices.restdocs.spec.Specification;
 import com.berkleytechnologyservices.restdocs.spec.SpecificationFormat;
 import com.berkleytechnologyservices.restdocs.spec.generator.SpecificationGenerator;
 import com.berkleytechnologyservices.restdocs.spec.generator.SpecificationGeneratorException;
+import com.epages.restdocs.openapi.generator.Oauth2Configuration;
 import com.epages.restdocs.openapi.generator.OpenApi20Generator;
 import com.epages.restdocs.openapi.generator.ResourceModel;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -16,12 +19,13 @@ import javax.inject.Named;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Named
 public class OpenApi20SpecificationGenerator implements SpecificationGenerator {
 
-  private static final JsonProcessingFunction YAML_GENERATOR = (swagger) -> Yaml.pretty().writeValueAsString(swagger);
-  private static final JsonProcessingFunction JSON_GENERATOR = (swagger) -> Json.pretty().writeValueAsString(swagger);
+  private static final JsonProcessingFunction YAML_GENERATOR = swagger -> Yaml.pretty().writeValueAsString(swagger);
+  private static final JsonProcessingFunction JSON_GENERATOR = swagger -> Json.pretty().writeValueAsString(swagger);
 
   private static final Map<SpecificationFormat, JsonProcessingFunction> FORMAT_GENERATORS = createFormatGeneratorsMap();
 
@@ -39,7 +43,7 @@ public class OpenApi20SpecificationGenerator implements SpecificationGenerator {
         details.getSchemes(),
         details.getName(),
         details.getVersion(),
-        null
+        createOauth2Configuration(details.getAuthConfig())
     );
 
     try {
@@ -59,5 +63,26 @@ public class OpenApi20SpecificationGenerator implements SpecificationGenerator {
     generators.put(SpecificationFormat.YAML, YAML_GENERATOR);
     generators.put(SpecificationFormat.JSON, JSON_GENERATOR);
     return generators;
+  }
+
+  private static Oauth2Configuration createOauth2Configuration(AuthConfig authConfig) {
+
+    Oauth2Configuration oauth2Configuration = null;
+
+    if (authConfig.getTokenUrl() != null && authConfig.getAuthorizationUrl() != null) {
+      oauth2Configuration = new Oauth2Configuration();
+      oauth2Configuration.setTokenUrl(authConfig.getTokenUrl());
+      oauth2Configuration.setAuthorizationUrl(authConfig.getAuthorizationUrl());
+      oauth2Configuration.setFlows(authConfig.getFlows().toArray(new String[0]));
+
+      if (!authConfig.getScopes().isEmpty()) {
+        oauth2Configuration.setScopes(
+            authConfig.getScopes().stream()
+                .collect(Collectors.toMap(Scope::getName, Scope::getDescription))
+        );
+      }
+    }
+
+    return oauth2Configuration;
   }
 }

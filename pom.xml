@@ -31,7 +31,7 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.version>3.3.1</maven.version>
     <maven-plugin-tools.version>3.5.2</maven-plugin-tools.version>
-    <restdocs-openapi.version>0.2.5</restdocs-openapi.version>
+    <restdocs-openapi.version>0.2.8</restdocs-openapi.version>
     <junit.version>5.2.0</junit.version>
     <assertj.version>3.11.0</assertj.version>
     <mockito.version>2.21.0</mockito.version>
