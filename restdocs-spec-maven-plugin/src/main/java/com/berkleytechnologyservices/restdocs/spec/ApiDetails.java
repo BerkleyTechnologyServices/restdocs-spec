@@ -17,6 +17,7 @@ public class ApiDetails {
   private String basePath;
   private List<String> schemes;
   private SpecificationFormat format;
+  private AuthConfig authConfig;
   
   public ApiDetails() {
     this.name = DEFAULT_NAME;
@@ -25,6 +26,7 @@ public class ApiDetails {
     this.basePath = null;
     this.schemes = DEFAULT_SCHEMES;
     this.format = DEFAULT_FORMAT;
+    this.authConfig = new AuthConfig();
   }
 
   public String getName() {
@@ -78,6 +80,15 @@ public class ApiDetails {
 
   public ApiDetails format(SpecificationFormat format) {
     this.format = format != null ? format : DEFAULT_FORMAT;
+    return this;
+  }
+
+  public AuthConfig getAuthConfig() {
+    return this.authConfig;
+  }
+
+  public ApiDetails authConfig(AuthConfig authConfig) {
+    this.authConfig = authConfig != null ? authConfig : new AuthConfig();
     return this;
   }
 }

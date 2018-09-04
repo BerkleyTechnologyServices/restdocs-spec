@@ -4,10 +4,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.berkleytechnologyservices.restdocs.it</groupId>
-  <artifactId>simple-it</artifactId>
+  <artifactId>json-format-it</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <description>A simple IT verifying the basic use case.</description>
+  <description>Verify using json as the specification format.</description>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -50,6 +50,24 @@
               <snippetsDirectory>${project.basedir}/snippets</snippetsDirectory>
               <filename>sample-api-spec</filename>
               <format>JSON</format>
+              <oauth2>
+                <tokenUrl>https://example.org/uaa/token</tokenUrl>
+                <authorizationUrl>https://example.org/uaa/authorize</authorizationUrl>
+                <flows>
+                  <flow>accessCode</flow>
+                  <flow>password</flow>
+                </flows>
+                <scopes>
+                  <scope>
+                    <name>write:cart</name>
+                    <description>Write cart to the database.</description>
+                  </scope>
+                  <scope>
+                    <name>read:cart</name>
+                    <description>Read cart from the database.</description>
+                  </scope>
+                </scopes>
+              </oauth2>
             </configuration>
           </execution>
         </executions>

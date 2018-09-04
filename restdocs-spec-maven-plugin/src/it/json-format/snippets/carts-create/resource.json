@@ -13,7 +13,12 @@
     "requestParameters" : [ ],
     "requestFields" : [ ],
     "example" : null,
-    "securityRequirements" : null
+    "securityRequirements" : {
+      "type": "OAUTH2",
+      "requiredScopes": [
+        "write:cart"
+      ]
+    }
   },
   "response" : {
     "status" : 201,
