@@ -76,6 +76,7 @@ There are several other aspects you can optionally configure.  Here is the full 
           <skip>false</skip>
           <format>YAML</format>
           <filename>openapi-2.0</filename>
+          <separatePublicApi>false</separatePublicApi>
           <oauth2 />
         </configuration>
       </execution>

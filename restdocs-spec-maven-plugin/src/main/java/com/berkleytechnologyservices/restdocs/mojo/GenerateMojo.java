@@ -21,6 +21,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * This mojo generates an api specification using snippet files.
@@ -98,6 +99,9 @@ public class GenerateMojo extends AbstractMojo {
   @Parameter(property = "filename")
   private String filename;
 
+  @Parameter(defaultValue = "false", property = "separatePublicApi", required = true)
+  private boolean separatePublicApi;
+
   @Parameter
   private List<SpecificationOptions> specifications = Collections.emptyList();
 
@@ -164,7 +168,15 @@ public class GenerateMojo extends AbstractMojo {
   private void generateSpecifications(List<SpecificationOptions> allSpecificationOptions) throws MojoExecutionException {
     List<ResourceModel> snippets = snippetReader.getModels(snippetsDirectory);
     for (SpecificationOptions options : allSpecificationOptions) {
-      writeSpecificationToFile(options, generateSpecification(options, snippets));
+      writeSpecificationToFile(options.getFilenameWithExtension(), generateSpecification(options, snippets));
+
+      if (separatePublicApi) {
+        List<ResourceModel> publicResources = snippets.stream()
+            .filter(resource -> !resource.getPrivateResource())
+            .collect(Collectors.toList());
+
+        writeSpecificationToFile(options.getPublicFilenameWithExtension(), generateSpecification(options, publicResources));
+      }
     }
   }
 
@@ -176,8 +188,8 @@ public class GenerateMojo extends AbstractMojo {
     }
   }
 
-  private void writeSpecificationToFile(SpecificationOptions options, String outputString) throws MojoExecutionException {
-    Path filePath = new File(outputDirectory, options.getFullFilename()).toPath();
+  private void writeSpecificationToFile(String filename, String outputString) throws MojoExecutionException {
+    Path filePath = new File(outputDirectory, filename).toPath();
     try {
       Files.write(filePath, outputString.getBytes());
     } catch (IOException e) {

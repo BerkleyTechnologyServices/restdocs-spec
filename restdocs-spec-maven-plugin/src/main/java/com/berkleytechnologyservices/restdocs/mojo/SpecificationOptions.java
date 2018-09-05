@@ -29,8 +29,16 @@ public class SpecificationOptions {
     return this.filename != null ? this.filename : this.type.getDefaultFilename();
   }
 
-  public String getFullFilename() {
+  public String getPublicFilename() {
+    return this.getFilename() + "-public";
+  }
+
+  public String getFilenameWithExtension() {
     return this.getFilename() + this.getFormat().getExtension();
+  }
+
+  public String getPublicFilenameWithExtension() {
+    return this.getPublicFilename() + this.getFormat().getExtension();
   }
 
   public void setFilename(String filename) {

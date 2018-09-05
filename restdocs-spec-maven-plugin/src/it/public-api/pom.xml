@@ -47,8 +47,7 @@
               <goal>generate</goal>
             </goals>
             <configuration>
-              <filename>sample-api-spec</filename>
-              <format>JSON</format>
+              <separatePublicApi>true</separatePublicApi>
               <oauth2>
                 <tokenUrl>https://example.org/uaa/token</tokenUrl>
                 <authorizationUrl>https://example.org/uaa/authorize</authorizationUrl>

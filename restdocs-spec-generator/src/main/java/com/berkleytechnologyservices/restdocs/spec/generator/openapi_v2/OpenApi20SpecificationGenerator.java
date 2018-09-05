@@ -29,6 +29,16 @@ public class OpenApi20SpecificationGenerator implements SpecificationGenerator {
 
   private static final Map<SpecificationFormat, JsonProcessingFunction> FORMAT_GENERATORS = createFormatGeneratorsMap();
 
+  private final OpenApi20Generator generator;
+
+  public OpenApi20SpecificationGenerator() {
+    this(OpenApi20Generator.INSTANCE);
+  }
+
+  public OpenApi20SpecificationGenerator(OpenApi20Generator generator) {
+    this.generator = generator;
+  }
+
   @Override
   public Specification getSpecification() {
     return Specification.OPENAPI_V2;
@@ -36,7 +46,7 @@ public class OpenApi20SpecificationGenerator implements SpecificationGenerator {
 
   @Override
   public String generate(ApiDetails details, List<ResourceModel> models) throws SpecificationGeneratorException {
-    Swagger spec = OpenApi20Generator.INSTANCE.generate(
+    Swagger spec = generator.generate(
         models,
         details.getBasePath(),
         details.getHost(),
