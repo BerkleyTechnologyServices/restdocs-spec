@@ -99,7 +99,7 @@ it using the `<oauth2 />` element.  Here is an example:
           <goal>generate</goal>
         </goals>
         <configuration>
-          <oauth>
+          <oauth2>
             <tokenUrl>http://example.com/uaa/token</tokenUrl>
             <authorizationUrl>http://example.com/uaa/authorize</authorizationUrl>
             <flows>
@@ -116,7 +116,7 @@ it using the `<oauth2 />` element.  Here is an example:
                 <description>Access to write operations.</description>
               </scope>
             </scopes>
-          </oauth>
+          </oauth2>
         </configuration>
       </execution>
     </executions>
