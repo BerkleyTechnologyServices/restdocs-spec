@@ -123,6 +123,10 @@ it using the `<oauth2 />` element.  Here is an example:
   </plugin>
 ```
 
+## Example
+
+You can find a full example project here: https://github.com/BerkleyTechnologyServices/restdocs-spec-example
+
 ## Still in development
 
 * Support for additional specification formats is currently in development.  We plan to add 
