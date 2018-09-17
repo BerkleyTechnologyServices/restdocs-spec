@@ -31,13 +31,14 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.version>3.3.1</maven.version>
     <maven-plugin-tools.version>3.5.2</maven-plugin-tools.version>
-    <restdocs-openapi.version>0.2.9</restdocs-openapi.version>
+    <restdocs-openapi.version>0.3.1</restdocs-openapi.version>
     <junit.version>5.2.0</junit.version>
     <assertj.version>3.11.0</assertj.version>
     <mockito.version>2.21.0</mockito.version>
   </properties>
 
   <modules>
+    <module>restdocs-spec-generator</module>
     <module>restdocs-spec-maven-plugin</module>
   </modules>
 
@@ -68,8 +69,18 @@
         <scope>provided</scope>
       </dependency>
       <dependency>
+        <groupId>javax.inject</groupId>
+        <artifactId>javax.inject</artifactId>
+        <version>1</version>
+      </dependency>
+      <dependency>
         <groupId>com.github.epages-de.restdocs-openapi</groupId>
         <artifactId>restdocs-openapi-generator</artifactId>
+        <version>${restdocs-openapi.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.github.epages-de.restdocs-openapi</groupId>
+        <artifactId>restdocs-openapi-model</artifactId>
         <version>${restdocs-openapi.version}</version>
       </dependency>
       <dependency>
@@ -172,9 +183,9 @@
           <version>3.1.0</version>
         </plugin>
         <plugin>
-          <groupId>org.sonatype.plugins</groupId>
+          <groupId>org.eclipse.sisu</groupId>
           <artifactId>sisu-maven-plugin</artifactId>
-          <version>1.4</version>
+          <version>0.3.3</version>
         </plugin>
       </plugins>
     </pluginManagement>

@@ -43,8 +43,13 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
+      <groupId>com.github.berkleytechnologyservices.restdocs-spec</groupId>
+      <artifactId>restdocs-spec-generator</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
       <groupId>com.github.epages-de.restdocs-openapi</groupId>
-      <artifactId>restdocs-openapi-generator</artifactId>
+      <artifactId>restdocs-openapi-model</artifactId>
     </dependency>
   </dependencies>
 
@@ -73,7 +78,7 @@
         </executions>
       </plugin>
       <plugin>
-        <groupId>org.sonatype.plugins</groupId>
+        <groupId>org.eclipse.sisu</groupId>
         <artifactId>sisu-maven-plugin</artifactId>
         <executions>
           <execution>
