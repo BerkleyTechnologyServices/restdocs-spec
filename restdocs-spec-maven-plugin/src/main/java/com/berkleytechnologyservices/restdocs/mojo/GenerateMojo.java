@@ -6,7 +6,7 @@ import com.berkleytechnologyservices.restdocs.spec.Specification;
 import com.berkleytechnologyservices.restdocs.spec.SpecificationFormat;
 import com.berkleytechnologyservices.restdocs.spec.generator.SpecificationGeneratorException;
 import com.berkleytechnologyservices.restdocs.spec.generator.SpecificationGeneratorFactory;
-import com.epages.restdocs.openapi.generator.ResourceModel;
+import com.epages.restdocs.openapi.model.ResourceModel;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
