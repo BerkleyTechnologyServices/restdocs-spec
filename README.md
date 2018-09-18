@@ -6,7 +6,7 @@
 ## Usage
 
 First head over to the [ePages-de/restdocs-openapi](https://github.com/ePages-de/restdocs-openapi) project
-and following the instructions for setting up the Spring REST Docs extension.  That extension will produce
+and follow the instructions for setting up the Spring REST Docs extension.  That extension will produce
 `resource.json` files for each of your documented resources.  You'll also notice that project provides
 a gradle plugin that can be used to read all the `resource.json` files and turn them into an OpenAPI spec
 file.  That is exactly what this project does as well, only in the form of a maven plugin instead.
@@ -74,7 +74,7 @@ There are several other aspects you can optionally configure.  Here is the full 
           <snippetDirectory>${project.build.directory}/generated-snippets</snippetDirectory>
           <outputDirectory>${project.build.directory}/restdocs-spec</outputDirectory>
           <skip>false</skip>
-          <format>JSON</format>
+          <format>YAML</format>
           <filename>openapi-2.0</filename>
           <oauth2 />
         </configuration>
