@@ -9,9 +9,38 @@
   <version>0.8-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>Restdocs Spec Generation Support</name>
-
+  <name>${project.groupId}:${project.artifactId}</name>
+  <description>Restdocs Spec Generation Support</description>
   <url>https://github.com/BerkleyTechnologyServices/restdocs-spec</url>
+
+  <licenses>
+    <license>
+      <name>The Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+
+  <organization>
+    <name>Berkley Technology Services</name>
+    <url>https://berkleytechnologyservices.com</url>
+  </organization>
+
+  <developers>
+    <developer>
+      <name>Kyle Lieber</name>
+      <url>https://github.com/klieber</url>
+    </developer>
+    <developer>
+      <name>Kyle Hoehns</name>
+      <url>https://github.com/kylehoehns</url>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:git:git://github.com/BerkleyTechnologyServices/restdocs-spec.git</connection>
+    <developerConnection>scm:git:ssh://github.com:BerkleyTechnologyServices/restdocs-spec.git</developerConnection>
+    <url>http://github.com/BerkleyTechnologyServices/restdocs-spec/tree/master</url>
+  </scm>
 
   <!-- need this here for now since restdocs-openapi-generator is not in central -->
   <repositories>
@@ -24,6 +53,14 @@
       <url>https://jitpack.io</url>
     </repository>
   </repositories>
+
+  <distributionManagement>
+    <repository>
+      <id>bintray-berkleytechnologyservices-stage</id>
+      <name>berkleytechnologyservices-stage</name>
+      <url>https://api.bintray.com/maven/berkleytechnologyservices/stage/restdocs-spec/;publish=1</url>
+    </repository>
+  </distributionManagement>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
