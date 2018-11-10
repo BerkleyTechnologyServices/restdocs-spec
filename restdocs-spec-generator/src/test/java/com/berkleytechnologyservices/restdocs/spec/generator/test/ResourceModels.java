@@ -1,14 +1,14 @@
-package com.berkleytechnologyservices.restdocs.spec.test;
+package com.berkleytechnologyservices.restdocs.spec.generator.test;
 
-import com.epages.restdocs.openapi.model.Attributes;
-import com.epages.restdocs.openapi.model.FieldDescriptor;
-import com.epages.restdocs.openapi.model.HTTPMethod;
-import com.epages.restdocs.openapi.model.HeaderDescriptor;
-import com.epages.restdocs.openapi.model.ParameterDescriptor;
-import com.epages.restdocs.openapi.model.RequestModel;
-import com.epages.restdocs.openapi.model.ResourceModel;
-import com.epages.restdocs.openapi.model.ResponseModel;
-import com.epages.restdocs.openapi.model.SecurityRequirements;
+import com.epages.restdocs.apispec.model.Attributes;
+import com.epages.restdocs.apispec.model.FieldDescriptor;
+import com.epages.restdocs.apispec.model.HTTPMethod;
+import com.epages.restdocs.apispec.model.HeaderDescriptor;
+import com.epages.restdocs.apispec.model.ParameterDescriptor;
+import com.epages.restdocs.apispec.model.RequestModel;
+import com.epages.restdocs.apispec.model.ResourceModel;
+import com.epages.restdocs.apispec.model.ResponseModel;
+import com.epages.restdocs.apispec.model.SecurityRequirements;
 
 import java.util.List;
 
@@ -17,7 +17,11 @@ import static org.assertj.core.util.Sets.newLinkedHashSet;
 
 public final class ResourceModels {
 
-  public static ResourceModel resource(String operationId, String description, String tag, RequestModel request, ResponseModel response) {
+  public static ResourceModel resource(String operationId,
+                                       String description,
+                                       String tag,
+                                       RequestModel request,
+                                       ResponseModel response) {
     return resource(
         operationId,
         description,
@@ -110,7 +114,10 @@ public final class ResourceModels {
     return response(status, contentType, emptyList(), fields);
   }
 
-  public static ResponseModel response(int status, String contentType, List<HeaderDescriptor> headers, List<FieldDescriptor> fields) {
+  public static ResponseModel response(int status,
+                                       String contentType,
+                                       List<HeaderDescriptor> headers,
+                                       List<FieldDescriptor> fields) {
     return response(status, contentType, headers, fields, null, null);
   }
 

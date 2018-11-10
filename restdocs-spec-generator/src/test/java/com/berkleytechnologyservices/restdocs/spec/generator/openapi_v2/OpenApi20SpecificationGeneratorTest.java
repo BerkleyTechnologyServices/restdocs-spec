@@ -2,18 +2,17 @@ package com.berkleytechnologyservices.restdocs.spec.generator.openapi_v2;
 
 import com.berkleytechnologyservices.restdocs.spec.ApiDetails;
 import com.berkleytechnologyservices.restdocs.spec.Specification;
-import com.berkleytechnologyservices.restdocs.spec.generator.SpecificationGeneratorException;
-import com.epages.restdocs.openapi.model.HTTPMethod;
-import com.epages.restdocs.openapi.model.ResourceModel;
+import com.epages.restdocs.apispec.model.HTTPMethod;
+import com.epages.restdocs.apispec.model.ResourceModel;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static com.berkleytechnologyservices.restdocs.spec.test.ResourceModels.field;
-import static com.berkleytechnologyservices.restdocs.spec.test.ResourceModels.request;
-import static com.berkleytechnologyservices.restdocs.spec.test.ResourceModels.requiredParam;
-import static com.berkleytechnologyservices.restdocs.spec.test.ResourceModels.resource;
-import static com.berkleytechnologyservices.restdocs.spec.test.ResourceModels.response;
+import static com.berkleytechnologyservices.restdocs.spec.generator.test.ResourceModels.field;
+import static com.berkleytechnologyservices.restdocs.spec.generator.test.ResourceModels.request;
+import static com.berkleytechnologyservices.restdocs.spec.generator.test.ResourceModels.requiredParam;
+import static com.berkleytechnologyservices.restdocs.spec.generator.test.ResourceModels.resource;
+import static com.berkleytechnologyservices.restdocs.spec.generator.test.ResourceModels.response;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.contentOf;
 import static org.assertj.core.util.Lists.emptyList;
@@ -30,7 +29,7 @@ public class OpenApi20SpecificationGeneratorTest {
   }
 
   @Test
-  public void testGenerateWithDefaults() throws SpecificationGeneratorException {
+  public void testGenerateWithDefaults() {
 
     ApiDetails apiDetails = new ApiDetails();
 
@@ -59,7 +58,8 @@ public class OpenApi20SpecificationGeneratorTest {
 
     String rawOutput = generator.generate(apiDetails, list(model));
 
-    assertThat(rawOutput).isEqualToNormalizingNewlines(contentOfResource("/mock-specs/default-settings.yml"));
+    assertThat(rawOutput)
+        .isEqualToNormalizingNewlines(contentOfResource("/mock-specs/default-settings.yml"));
   }
 
   private static String contentOfResource(String resourceName) {

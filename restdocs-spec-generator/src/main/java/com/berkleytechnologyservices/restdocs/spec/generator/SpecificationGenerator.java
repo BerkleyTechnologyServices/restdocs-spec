@@ -2,7 +2,7 @@ package com.berkleytechnologyservices.restdocs.spec.generator;
 
 import com.berkleytechnologyservices.restdocs.spec.ApiDetails;
 import com.berkleytechnologyservices.restdocs.spec.Specification;
-import com.epages.restdocs.openapi.model.ResourceModel;
+import com.epages.restdocs.apispec.model.ResourceModel;
 
 import java.util.List;
 

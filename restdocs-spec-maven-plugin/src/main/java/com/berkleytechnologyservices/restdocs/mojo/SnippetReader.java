@@ -1,6 +1,6 @@
 package com.berkleytechnologyservices.restdocs.mojo;
 
-import com.epages.restdocs.openapi.model.ResourceModel;
+import com.epages.restdocs.apispec.model.ResourceModel;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.module.kotlin.KotlinModule;
 import org.apache.maven.plugin.MojoExecutionException;

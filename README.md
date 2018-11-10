@@ -5,7 +5,7 @@
 
 ## Usage
 
-First head over to the [ePages-de/restdocs-openapi](https://github.com/ePages-de/restdocs-openapi) project
+First head over to the [ePages-de/restdocs-api-spec](https://github.com/ePages-de/restdocs-api-spec) project
 and follow the instructions for setting up the Spring REST Docs extension.  That extension will produce
 `resource.json` files for each of your documented resources.  You'll also notice that project provides
 a gradle plugin that can be used to read all the `resource.json` files and turn them into an OpenAPI spec

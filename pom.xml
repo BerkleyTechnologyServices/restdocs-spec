@@ -52,6 +52,10 @@
       <id>jitpack.io</id>
       <url>https://jitpack.io</url>
     </repository>
+    <repository>
+      <id>jcenter</id>
+      <url>https://jcenter.bintray.com</url>
+    </repository>
   </repositories>
 
   <distributionManagement>
@@ -68,7 +72,7 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.version>3.3.1</maven.version>
     <maven-plugin-tools.version>3.5.2</maven-plugin-tools.version>
-    <restdocs-openapi.version>0.4.2</restdocs-openapi.version>
+    <restdocs-api-spec.version>0.5.0</restdocs-api-spec.version>
     <junit.version>5.2.0</junit.version>
     <assertj.version>3.11.0</assertj.version>
     <mockito.version>2.21.0</mockito.version>
@@ -111,14 +115,14 @@
         <version>1</version>
       </dependency>
       <dependency>
-        <groupId>com.github.epages-de.restdocs-openapi</groupId>
-        <artifactId>restdocs-openapi-generator</artifactId>
-        <version>${restdocs-openapi.version}</version>
+        <groupId>com.epages</groupId>
+        <artifactId>restdocs-api-spec-openapi-generator</artifactId>
+        <version>${restdocs-api-spec.version}</version>
       </dependency>
       <dependency>
-        <groupId>com.github.epages-de.restdocs-openapi</groupId>
-        <artifactId>restdocs-openapi-model</artifactId>
-        <version>${restdocs-openapi.version}</version>
+        <groupId>com.epages</groupId>
+        <artifactId>restdocs-api-spec-model</artifactId>
+        <version>${restdocs-api-spec.version}</version>
       </dependency>
       <dependency>
         <groupId>org.junit.jupiter</groupId>

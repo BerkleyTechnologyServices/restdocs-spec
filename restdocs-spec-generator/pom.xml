@@ -16,12 +16,12 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.github.epages-de.restdocs-openapi</groupId>
-      <artifactId>restdocs-openapi-generator</artifactId>
+      <groupId>com.epages</groupId>
+      <artifactId>restdocs-api-spec-openapi-generator</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.github.epages-de.restdocs-openapi</groupId>
-      <artifactId>restdocs-openapi-model</artifactId>
+      <groupId>com.epages</groupId>
+      <artifactId>restdocs-api-spec-model</artifactId>
     </dependency>
     <dependency>
       <groupId>javax.inject</groupId>
