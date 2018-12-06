@@ -6,7 +6,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 public enum Specification {
-  OPENAPI_V2("openapi-2.0", SpecificationFormat.YAML, SpecificationFormat.JSON);
+  OPENAPI_V2("openapi-2.0", SpecificationFormat.YAML, SpecificationFormat.JSON),
+  OPENAPI_V3("openapi-3.0", SpecificationFormat.YAML, SpecificationFormat.JSON);
 
   private final String defaultFilename;
   private final SpecificationFormat defaultFormat;
