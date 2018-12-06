@@ -121,6 +121,11 @@
       </dependency>
       <dependency>
         <groupId>com.epages</groupId>
+        <artifactId>restdocs-api-spec-openapi3-generator</artifactId>
+        <version>${restdocs-api-spec.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.epages</groupId>
         <artifactId>restdocs-api-spec-model</artifactId>
         <version>${restdocs-api-spec.version}</version>
       </dependency>

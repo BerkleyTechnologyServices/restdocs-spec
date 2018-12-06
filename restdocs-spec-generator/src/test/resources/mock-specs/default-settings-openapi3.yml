@@ -1,0 +1,46 @@
+openapi: 3.0.1
+info:
+  title: API Documentation
+  version: 1.0.0
+servers:
+- url: http://localhost
+tags: []
+paths:
+  /book/{id}:
+    get:
+      tags:
+      - book
+      summary: Get a book by id
+      description: Get a book by id
+      operationId: book-get
+      parameters:
+      - name: id
+        in: path
+        description: The unique identifier for the book.
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: "200"
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/book-id328345809'
+              examples:
+                book-get:
+                  value: The example response.
+components:
+  schemas:
+    book-id328345809:
+      type: object
+      properties:
+        pages:
+          type: number
+          description: Number of pages in the book
+        author:
+          type: string
+          description: Author of the book
+        title:
+          type: string
+          description: Title of the book

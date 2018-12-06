@@ -21,6 +21,10 @@
     </dependency>
     <dependency>
       <groupId>com.epages</groupId>
+      <artifactId>restdocs-api-spec-openapi3-generator</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.epages</groupId>
       <artifactId>restdocs-api-spec-model</artifactId>
     </dependency>
     <dependency>
