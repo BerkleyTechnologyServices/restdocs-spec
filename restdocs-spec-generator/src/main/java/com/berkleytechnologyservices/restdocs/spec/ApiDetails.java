@@ -110,7 +110,7 @@ public class ApiDetails {
   }
 
   public ApiDetails tagDescriptions(Map<String, String> tagDescriptions) {
-    this.tagDescriptions = tagDescriptions;
+    this.tagDescriptions = tagDescriptions != null ? tagDescriptions : this.tagDescriptions;
     return this;
   }
 }
