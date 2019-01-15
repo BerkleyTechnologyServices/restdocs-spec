@@ -21,6 +21,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -42,6 +43,12 @@ public class GenerateMojo extends AbstractMojo {
    */
   @Parameter(defaultValue = "${project.version}", required = true)
   private String version;
+
+  /**
+   * Description of the API
+   */
+  @Parameter(defaultValue = "${project.description}", required = true)
+  private String description;
 
   /**
    * Host
@@ -107,6 +114,14 @@ public class GenerateMojo extends AbstractMojo {
 
   @Parameter
   private AuthConfig oauth2 = new AuthConfig();
+
+  /**
+   * Mapping of tag names to descriptions. These are populated into the top level.
+   * @see <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#tag-object>https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#tag-object</a>
+   * No default - if not provided no tags will be created.
+   */
+  @Parameter
+  private Map<String, String> tagDescriptions;
 
   private final SnippetReader snippetReader;
   private final SpecificationGeneratorFactory specificationGeneratorFactory;
@@ -201,11 +216,13 @@ public class GenerateMojo extends AbstractMojo {
     return new ApiDetails()
         .name(name)
         .version(version)
+		.description(description)
         .host(host)
         .basePath(basePath)
         .schemes(schemes)
         .format(options.getFormat())
-        .authConfig(oauth2);
+        .authConfig(oauth2)
+        .tagDescriptions(tagDescriptions);
   }
 
   private List<SpecificationOptions> getAllSpecificationOptions() {
