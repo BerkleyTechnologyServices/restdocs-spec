@@ -39,6 +39,8 @@ public class OpenApi20SpecificationGenerator implements SpecificationGenerator {
         details.getHost(),
         details.getSchemes(),
         details.getName(),
+        details.getDescription(),
+        details.getTagDescriptions(),
         details.getVersion(),
         createOauth2Configuration(details.getAuthConfig()),
         details.getFormat().name().toLowerCase()
