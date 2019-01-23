@@ -66,8 +66,15 @@ There are several other aspects you can optionally configure.  Here is the full 
         <configuration>
           <name>${project.artifactId}</name>
           <version>${project.version}</version>
+          <description></description>
           <host>localhost</host>
           <basePath></basePath>
+          <tagDescriptions>
+            <tag>
+              <name></name>
+              <description></description>
+            </tag>
+          </tagDescriptions>
           <schemes>
             <scheme>http</scheme>
           </schemes>

@@ -4,6 +4,7 @@ import com.berkleytechnologyservices.restdocs.spec.ApiDetails;
 import com.berkleytechnologyservices.restdocs.spec.AuthConfig;
 import com.berkleytechnologyservices.restdocs.spec.Specification;
 import com.berkleytechnologyservices.restdocs.spec.SpecificationFormat;
+import com.berkleytechnologyservices.restdocs.spec.Tag;
 import com.berkleytechnologyservices.restdocs.spec.generator.SpecificationGeneratorException;
 import com.berkleytechnologyservices.restdocs.spec.generator.SpecificationGeneratorFactory;
 import com.epages.restdocs.apispec.model.ResourceModel;
@@ -38,6 +39,12 @@ public class GenerateMojo extends AbstractMojo {
   private String name;
 
   /**
+   * Description of the API
+   */
+  @Parameter
+  private String description;
+
+  /**
    * Version of the API
    */
   @Parameter(defaultValue = "${project.version}", required = true)
@@ -54,6 +61,13 @@ public class GenerateMojo extends AbstractMojo {
    */
   @Parameter
   private String basePath;
+
+  /**
+   * Tag Descriptions
+   */
+  @Parameter
+  @SuppressWarnings("FieldMayBeFinal")
+  private List<Tag> tagDescriptions = Collections.emptyList();
 
   /**
    * Schemes
@@ -200,9 +214,11 @@ public class GenerateMojo extends AbstractMojo {
   private ApiDetails createApiDetails(SpecificationOptions options) {
     return new ApiDetails()
         .name(name)
+        .description(description)
         .version(version)
         .host(host)
         .basePath(basePath)
+        .tagDescriptions(tagDescriptions)
         .schemes(schemes)
         .format(options.getFormat())
         .authConfig(oauth2);

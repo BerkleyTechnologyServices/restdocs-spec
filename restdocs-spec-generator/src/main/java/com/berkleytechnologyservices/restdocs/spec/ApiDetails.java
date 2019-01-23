@@ -2,6 +2,8 @@ package com.berkleytechnologyservices.restdocs.spec;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ApiDetails {
 
@@ -12,18 +14,22 @@ public class ApiDetails {
   private static final SpecificationFormat DEFAULT_FORMAT = SpecificationFormat.YAML;
 
   private String name;
+  private String description;
   private String version;
   private String host;
   private String basePath;
+  private List<Tag> tagDescriptions;
   private List<String> schemes;
   private SpecificationFormat format;
   private AuthConfig authConfig;
-  
+
   public ApiDetails() {
     this.name = DEFAULT_NAME;
+    this.description = null;
     this.version = DEFAULT_VERSION;
     this.host = DEFAULT_HOST;
     this.basePath = null;
+    this.tagDescriptions = Collections.emptyList();
     this.schemes = DEFAULT_SCHEMES;
     this.format = DEFAULT_FORMAT;
     this.authConfig = new AuthConfig();
@@ -35,6 +41,15 @@ public class ApiDetails {
 
   public ApiDetails name(String name) {
     this.name = name != null ? name : DEFAULT_NAME;
+    return this;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public ApiDetails description(String description) {
+    this.description = description;
     return this;
   }
 
@@ -62,6 +77,16 @@ public class ApiDetails {
 
   public ApiDetails basePath(String basePath) {
     this.basePath = basePath;
+    return this;
+  }
+
+  public Map<String, String> getTagDescriptions() {
+    return tagDescriptions.stream()
+        .collect(Collectors.toMap(Tag::getName, Tag::getDescription));
+  }
+
+  public ApiDetails tagDescriptions(List<Tag> tagDescriptions) {
+    this.tagDescriptions = tagDescriptions != null ? Collections.unmodifiableList(tagDescriptions) : Collections.emptyList();
     return this;
   }
 
