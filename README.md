@@ -51,6 +51,25 @@ If you would prefer that the OpenAPI 2.0 document is in JSON format you can spec
   </plugin>
 ```
 
+If you would prefer that the document is created to match the OpenAPI 3.0 specification you can specify it like this:
+```xml
+  <plugin>
+    <groupId>com.github.berkleytechnologyservices.restdocs-spec</groupId>
+    <artifactId>restdocs-spec-maven-plugin</artifactId>
+    <version>${restdocs-spec.version}</version>
+    <executions>
+      <execution>
+        <goals>
+          <goal>generate</goal>
+        </goals>
+        <configuration>
+          <specification>OPENAPI_V3</specification>
+        </configuration>
+      </execution>
+    </executions>
+  </plugin>
+```
+
 There are several other aspects you can optionally configure.  Here is the full set of options with their default values:
 
 ```xml
@@ -72,6 +91,7 @@ There are several other aspects you can optionally configure.  Here is the full 
             <scheme>http</scheme>
           </schemes>
           <snippetDirectory>${project.build.directory}/generated-snippets</snippetDirectory>
+          <specification>OPENAPI_V2</specification>
           <outputDirectory>${project.build.directory}/restdocs-spec</outputDirectory>
           <skip>false</skip>
           <format>YAML</format>
@@ -131,6 +151,6 @@ You can find a full example project here: https://github.com/BerkleyTechnologySe
 ## Still in development
 
 * Support for additional specification formats is currently in development.  We plan to add 
-  support for OpenAPI 3.0 and Postman Collections.
+  support for Postman Collections.
 * Currently the plugin is not available in Maven Central.  However, it is available through
   [JitPack](https://jitpack.io/) and we do plan to eventually get it into Maven Central.
