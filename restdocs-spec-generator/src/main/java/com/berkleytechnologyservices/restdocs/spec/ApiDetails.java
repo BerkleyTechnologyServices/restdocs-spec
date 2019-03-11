@@ -2,7 +2,6 @@ package com.berkleytechnologyservices.restdocs.spec;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 public class ApiDetails {
 
@@ -20,7 +19,7 @@ public class ApiDetails {
   private List<String> schemes;
   private SpecificationFormat format;
   private AuthConfig authConfig;
-  private Map<String, String> tagDescriptions;
+  private List<Tag> tags;
   
   public ApiDetails() {
     this.name = DEFAULT_NAME;
@@ -30,7 +29,7 @@ public class ApiDetails {
     this.schemes = DEFAULT_SCHEMES;
     this.format = DEFAULT_FORMAT;
     this.authConfig = new AuthConfig();
-    this.tagDescriptions = Collections.emptyMap();
+    this.tags = Collections.emptyList();
   }
 
   public String getName() {
@@ -105,12 +104,12 @@ public class ApiDetails {
     return this;
   }
 
-  public Map<String, String> getTagDescriptions() {
-    return tagDescriptions;
+  public List<Tag> getTags() {
+    return tags;
   }
 
-  public ApiDetails tagDescriptions(Map<String, String> tagDescriptions) {
-    this.tagDescriptions = tagDescriptions != null ? tagDescriptions : this.tagDescriptions;
+  public ApiDetails tags(List<Tag> tags) {
+    this.tags = tags != null ? tags : this.tags;
     return this;
   }
 }

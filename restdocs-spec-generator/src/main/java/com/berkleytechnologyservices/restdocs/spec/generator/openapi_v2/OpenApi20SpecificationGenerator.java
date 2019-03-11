@@ -1,18 +1,14 @@
 package com.berkleytechnologyservices.restdocs.spec.generator.openapi_v2;
 
 import com.berkleytechnologyservices.restdocs.spec.ApiDetails;
-import com.berkleytechnologyservices.restdocs.spec.AuthConfig;
-import com.berkleytechnologyservices.restdocs.spec.Scope;
 import com.berkleytechnologyservices.restdocs.spec.Specification;
 import com.berkleytechnologyservices.restdocs.spec.generator.SpecificationGenerator;
 import com.berkleytechnologyservices.restdocs.spec.generator.SpecificationGeneratorUtils;
-import com.epages.restdocs.apispec.model.Oauth2Configuration;
 import com.epages.restdocs.apispec.model.ResourceModel;
 import com.epages.restdocs.apispec.openapi2.OpenApi20Generator;
 
 import javax.inject.Named;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Named
 public class OpenApi20SpecificationGenerator implements SpecificationGenerator {
@@ -41,7 +37,7 @@ public class OpenApi20SpecificationGenerator implements SpecificationGenerator {
         details.getSchemes(),
         details.getName(),
         details.getDescription(),
-        details.getTagDescriptions(),
+        SpecificationGeneratorUtils.createTagDescriptionsMap(details.getTags()),
         details.getVersion(),
         SpecificationGeneratorUtils.createOauth2Configuration(details.getAuthConfig()),
         details.getFormat().name().toLowerCase()

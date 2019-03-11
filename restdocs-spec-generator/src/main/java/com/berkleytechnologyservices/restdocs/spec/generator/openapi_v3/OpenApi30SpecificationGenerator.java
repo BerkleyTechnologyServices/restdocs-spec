@@ -48,7 +48,7 @@ public class OpenApi30SpecificationGenerator implements SpecificationGenerator {
             servers,
             details.getName(),
             details.getDescription(),
-            details.getTagDescriptions(),
+            SpecificationGeneratorUtils.createTagDescriptionsMap(details.getTags()),
             details.getVersion(),
             SpecificationGeneratorUtils.createOauth2Configuration(details.getAuthConfig()),
             details.getFormat().name().toLowerCase()
