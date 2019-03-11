@@ -4,6 +4,7 @@ import com.berkleytechnologyservices.restdocs.spec.ApiDetails;
 import com.berkleytechnologyservices.restdocs.spec.AuthConfig;
 import com.berkleytechnologyservices.restdocs.spec.Specification;
 import com.berkleytechnologyservices.restdocs.spec.SpecificationFormat;
+import com.berkleytechnologyservices.restdocs.spec.Tag;
 import com.berkleytechnologyservices.restdocs.spec.generator.SpecificationGeneratorException;
 import com.berkleytechnologyservices.restdocs.spec.generator.SpecificationGeneratorFactory;
 import com.epages.restdocs.apispec.model.ResourceModel;
@@ -21,7 +22,6 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -121,7 +121,7 @@ public class GenerateMojo extends AbstractMojo {
    * No default - if not provided no tags will be created.
    */
   @Parameter
-  private Map<String, String> tagDescriptions;
+  private List<Tag> tags;
 
   private final SnippetReader snippetReader;
   private final SpecificationGeneratorFactory specificationGeneratorFactory;
@@ -222,7 +222,7 @@ public class GenerateMojo extends AbstractMojo {
         .schemes(schemes)
         .format(options.getFormat())
         .authConfig(oauth2)
-        .tagDescriptions(tagDescriptions);
+        .tags(tags);
   }
 
   private List<SpecificationOptions> getAllSpecificationOptions() {

@@ -97,7 +97,40 @@ There are several other aspects you can optionally configure.  Here is the full 
           <format>YAML</format>
           <filename>openapi-2.0</filename>
           <separatePublicApi>false</separatePublicApi>
+          <tags />
           <oauth2 />
+        </configuration>
+      </execution>
+    </executions>
+  </plugin>
+```
+
+### Tags
+
+By default the plugin will not generate any tags.  You can optionally provide tags using the
+ `<tags />` element.  Here is an example:
+
+```xml
+  <plugin>
+    <groupId>com.github.berkleytechnologyservices.restdocs-spec</groupId>
+    <artifactId>restdocs-spec-maven-plugin</artifactId>
+    <version>${restdocs-spec.version}</version>
+    <executions>
+      <execution>
+        <goals>
+          <goal>generate</goal>
+        </goals>
+        <configuration>
+          <tags>
+            <tag>
+              <name>pets</name>
+              <description>Everything about your Pets</description>
+            </tag>
+            <tag>
+              <name>store</name>
+              <description>Access to Petstore orders</description>
+            </tag>
+          </tags>
         </configuration>
       </execution>
     </executions>
