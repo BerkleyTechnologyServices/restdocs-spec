@@ -1,7 +1,7 @@
 # Restdocs Spec Generation Support
 
 [![Build Status](https://travis-ci.org/BerkleyTechnologyServices/restdocs-spec.svg?branch=master)](https://travis-ci.org/BerkleyTechnologyServices/restdocs-spec)
-[![Release](https://jitpack.io/v/berkleytechnologyservices/restdocs-spec.svg)](https://jitpack.io/#berkleytechnologyservices/restdocs-spec)
+[ ![Download](https://api.bintray.com/packages/berkleytechnologyservices/stage/restdocs-spec/images/download.svg) ](https://bintray.com/berkleytechnologyservices/stage/restdocs-spec/_latestVersion)
 
 ## Usage
 
@@ -151,6 +151,6 @@ You can find a full example project here: https://github.com/BerkleyTechnologySe
 ## Still in development
 
 * Support for additional specification formats is currently in development.  We plan to add 
-  support for Postman Collections.
+  support for Postman Collections and RAML.
 * Currently the plugin is not available in Maven Central.  However, it is available through
-  [JitPack](https://jitpack.io/) and we do plan to eventually get it into Maven Central.
+  [JCenter](https://bintray.com/bintray/jcenter) and we do plan to eventually get it into Maven Central.
