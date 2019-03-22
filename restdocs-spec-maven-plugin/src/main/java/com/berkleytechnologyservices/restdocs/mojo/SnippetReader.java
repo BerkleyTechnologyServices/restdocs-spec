@@ -1,6 +1,7 @@
 package com.berkleytechnologyservices.restdocs.mojo;
 
 import com.epages.restdocs.apispec.model.ResourceModel;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.module.kotlin.KotlinModule;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -22,7 +23,9 @@ public class SnippetReader {
   private final ObjectMapper objectMapper;
 
   public SnippetReader() {
-    this(new ObjectMapper().registerModule(new KotlinModule()));
+    this(new ObjectMapper()
+            .disable(DeserializationFeature.FAIL_ON_IGNORED_PROPERTIES)
+            .registerModule(new KotlinModule()));
   }
 
   public SnippetReader(ObjectMapper objectMapper) {
