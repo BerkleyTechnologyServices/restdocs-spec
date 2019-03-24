@@ -90,7 +90,7 @@ There are several other aspects you can optionally configure.  Here is the full 
           <schemes>
             <scheme>http</scheme>
           </schemes>
-          <snippetDirectory>${project.build.directory}/generated-snippets</snippetDirectory>
+          <snippetsDirectory>${project.build.directory}/generated-snippets</snippetsDirectory>
           <specification>OPENAPI_V2</specification>
           <outputDirectory>${project.build.directory}/restdocs-spec</outputDirectory>
           <skip>false</skip>
