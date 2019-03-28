@@ -24,7 +24,7 @@ public class SnippetReader {
 
   public SnippetReader() {
     this(new ObjectMapper()
-            .disable(DeserializationFeature.FAIL_ON_IGNORED_PROPERTIES)
+            .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
             .registerModule(new KotlinModule()));
   }
 
