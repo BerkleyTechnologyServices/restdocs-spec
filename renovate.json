@@ -5,5 +5,14 @@
   "packageRules": [{
     "packagePatterns": ["^com.epages:restdocs"],
     "groupName": "restdocs-api-spec"
-  }] 
+  }, {
+    "packagePatterns": ["^org.apache.maven"],
+    "groupName": "maven"
+  }, {
+    "packagePatterns": ["^org.junit.jupiter"],
+    "groupName": "junit-jupiter"
+  }, {
+    "packagePatterns": ["^org.mockito"],
+    "groupName": "mockito"
+  }]
 }
