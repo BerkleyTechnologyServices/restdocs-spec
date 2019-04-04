@@ -14,5 +14,6 @@
   }, {
     "packagePatterns": ["^org.mockito"],
     "groupName": "mockito"
-  }]
+  }],
+  "prHourlyLimit": 10
 }
