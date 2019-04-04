@@ -1,5 +1,9 @@
 {
   "extends": [
     "config:base"
-  ]
+  ],
+  "packageRules": [{
+    "packagePatterns": ["^com.epages:restdocs"],
+    "groupName": "restdocs-api-spec"
+  }] 
 }
