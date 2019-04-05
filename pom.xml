@@ -70,7 +70,7 @@
     <maven-plugin-tools.version>3.5.2</maven-plugin-tools.version>
     <restdocs-api-spec.version>0.9.2</restdocs-api-spec.version>
     <junit.version>5.4.1</junit.version>
-    <assertj.version>3.11.0</assertj.version>
+    <assertj.version>3.12.2</assertj.version>
     <mockito.version>2.26.0</mockito.version>
   </properties>
 
