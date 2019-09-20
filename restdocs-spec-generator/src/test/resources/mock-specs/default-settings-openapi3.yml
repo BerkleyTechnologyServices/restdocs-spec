@@ -26,13 +26,13 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/book-id328345809'
+                $ref: '#/components/schemas/book-id-269102123'
               examples:
                 book-get:
                   value: The example response.
 components:
   schemas:
-    book-id328345809:
+    book-id-269102123:
       type: object
       properties:
         pages:
