@@ -6,8 +6,12 @@
     "packagePatterns": ["^com.epages:restdocs"],
     "groupName": "restdocs-api-spec"
   }, {
-    "packagePatterns": ["^org.apache.maven"],
-    "groupName": "maven"
+    "packagePatterns": ["^org.apache.maven:"],
+    "groupName": "maven",
+    "enabled": false
+  }, {
+    "packagePatterns": ["^org.apache.maven.plugins", "-maven-plugin$"],
+    "groupName": "maven-plugins"
   }, {
     "packagePatterns": ["^org.junit.jupiter"],
     "groupName": "junit-jupiter"
