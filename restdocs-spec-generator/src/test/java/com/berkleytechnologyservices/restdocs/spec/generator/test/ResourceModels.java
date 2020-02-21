@@ -8,6 +8,7 @@ import com.epages.restdocs.apispec.model.ParameterDescriptor;
 import com.epages.restdocs.apispec.model.RequestModel;
 import com.epages.restdocs.apispec.model.ResourceModel;
 import com.epages.restdocs.apispec.model.ResponseModel;
+import com.epages.restdocs.apispec.model.Schema;
 import com.epages.restdocs.apispec.model.SecurityRequirements;
 
 import java.util.List;
@@ -95,7 +96,7 @@ public final class ResourceModels {
                                      List<HeaderDescriptor> headers,
                                      List<ParameterDescriptor> pathParameters,
                                      List<ParameterDescriptor> requestParameters,
-                                     List<? extends FieldDescriptor> requestFields, String example, String schema) {
+                                     List<? extends FieldDescriptor> requestFields, String example, Schema schema) {
     return new RequestModel(
         path,
         method,
@@ -126,7 +127,7 @@ public final class ResourceModels {
                                        List<HeaderDescriptor> headers,
                                        List<FieldDescriptor> fields,
                                        String example,
-                                       String schema) {
+                                       Schema schema) {
     return new ResponseModel(status, contentType, headers, fields, example, schema);
   }
 

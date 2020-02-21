@@ -2,9 +2,9 @@ package com.berkleytechnologyservices.restdocs.spec.generator.openapi_v3;
 
 import com.berkleytechnologyservices.restdocs.spec.ApiDetails;
 import com.berkleytechnologyservices.restdocs.spec.Specification;
-import com.berkleytechnologyservices.restdocs.spec.generator.openapi_v2.OpenApi20SpecificationGenerator;
 import com.epages.restdocs.apispec.model.HTTPMethod;
 import com.epages.restdocs.apispec.model.ResourceModel;
+import com.epages.restdocs.apispec.model.Schema;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -56,7 +56,7 @@ public class OpenApi30SpecificationGeneratorTest {
                             field("pages", "Number of pages in the book", "NUMBER")
                     ),
                     "The example response.",
-                    "type: string"
+                    new Schema("MyCustomSchemaName")
 
             )
     );
