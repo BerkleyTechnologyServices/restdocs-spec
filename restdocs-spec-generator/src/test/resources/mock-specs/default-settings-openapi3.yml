@@ -26,13 +26,14 @@ paths:
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/book-id-269102123'
+                $ref: '#/components/schemas/MyCustomSchemaName'
               examples:
                 book-get:
                   value: The example response.
 components:
   schemas:
-    book-id-269102123:
+    MyCustomSchemaName:
+      title: MyCustomSchemaName
       type: object
       properties:
         pages:
