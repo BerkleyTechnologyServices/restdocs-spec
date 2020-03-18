@@ -1,7 +1,7 @@
 language: java
 sudo: false
 jdk:
-  - openjdk8
+  - openjdk11
 script: ./mvnw clean verify -Prun-its
 cache:
   directories:
