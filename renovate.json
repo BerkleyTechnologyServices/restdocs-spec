@@ -11,7 +11,7 @@
     "enabled": false
   }, {
     "packagePatterns": ["^org.apache.maven.plugins", "-maven-plugin$"],
-    "excludePackageNames": ["org.apache.maven.plugins:maven-plugin-plugin"],
+    "versionScheme": "semver",
     "groupName": "maven-plugins"
   }, {
     "packagePatterns": ["^org.junit.jupiter"],
