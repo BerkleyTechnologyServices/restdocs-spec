@@ -21,7 +21,7 @@ paths:
         schema:
           type: string
       responses:
-        200:
+        "200":
           description: "200"
           content:
             application/hal+json:
