@@ -1,6 +1,6 @@
 # Restdocs Spec Generation Support
 
-[![Build Status](https://travis-ci.org/BerkleyTechnologyServices/restdocs-spec.svg?branch=master)](https://travis-ci.org/BerkleyTechnologyServices/restdocs-spec)
+[![Build Status](https://travis-ci.com/BerkleyTechnologyServices/restdocs-spec.svg?branch=master)](https://travis-ci.com/BerkleyTechnologyServices/restdocs-spec)
 [ ![Download](https://api.bintray.com/packages/berkleytechnologyservices/stage/restdocs-spec/images/download.svg) ](https://bintray.com/berkleytechnologyservices/stage/restdocs-spec/_latestVersion)
 
 ## Usage
