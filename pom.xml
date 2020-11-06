@@ -122,6 +122,11 @@
       </dependency>
       <dependency>
         <groupId>com.epages</groupId>
+        <artifactId>restdocs-api-spec-postman-generator</artifactId>
+        <version>${restdocs-api-spec.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.epages</groupId>
         <artifactId>restdocs-api-spec-model</artifactId>
         <version>${restdocs-api-spec.version}</version>
       </dependency>

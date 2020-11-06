@@ -1,0 +1,56 @@
+{
+  "info" : {
+    "name" : "API Documentation",
+    "version" : "1.0.0",
+    "schema" : "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item" : [ {
+    "id" : "book-get",
+    "name" : "/book/{id}",
+    "description" : "Get a book by id",
+    "variable" : [ ],
+    "event" : [ ],
+    "request" : {
+      "url" : {
+        "protocol" : "http",
+        "host" : "localhost",
+        "path" : "/book/:id",
+        "variable" : [ {
+          "key" : "id",
+          "description" : "The unique identifier for the book.",
+          "system" : false,
+          "disabled" : false
+        } ]
+      },
+      "method" : "GET"
+    },
+    "response" : [ {
+      "id" : "book-get",
+      "name" : "book-get",
+      "originalRequest" : {
+        "url" : {
+          "protocol" : "http",
+          "host" : "localhost",
+          "path" : "/book/:id",
+          "variable" : [ {
+            "key" : "id",
+            "description" : "The unique identifier for the book.",
+            "system" : false,
+            "disabled" : false
+          } ]
+        },
+        "method" : "GET"
+      },
+      "header" : [ {
+        "key" : "Content-Type",
+        "value" : "application/hal+json",
+        "disabled" : false
+      } ],
+      "cookie" : [ ],
+      "body" : "The example response.",
+      "code" : 200
+    } ]
+  } ],
+  "event" : [ ],
+  "variable" : [ ]
+}

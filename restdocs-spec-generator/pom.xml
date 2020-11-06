@@ -25,6 +25,10 @@
     </dependency>
     <dependency>
       <groupId>com.epages</groupId>
+      <artifactId>restdocs-api-spec-postman-generator</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.epages</groupId>
       <artifactId>restdocs-api-spec-model</artifactId>
     </dependency>
     <dependency>

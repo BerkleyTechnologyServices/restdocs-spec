@@ -51,7 +51,7 @@ If you would prefer that the OpenAPI 2.0 document is in JSON format you can spec
   </plugin>
 ```
 
-If you would prefer that the document is created to match the OpenAPI 3.0 specification you can specify it like this:
+You can also generate OpenAPI 3.0 or Postman Collection specification. For instance, this would generate OpenAPI 3.0:
 ```xml
   <plugin>
     <groupId>com.github.berkleytechnologyservices.restdocs-spec</groupId>
@@ -63,12 +63,44 @@ If you would prefer that the document is created to match the OpenAPI 3.0 specif
           <goal>generate</goal>
         </goals>
         <configuration>
-          <specification>OPENAPI_V3</specification>
+          <specification>OPENAPI_V3</specification><!-- switch this to POSTMAN_COLLECTION for Postman Collection specs -->
         </configuration>
       </execution>
     </executions>
   </plugin>
 ```
+
+Finally, you can also generate multiple formats at once using the more verbose syntax:
+```xml
+  <plugin>
+    <groupId>com.github.berkleytechnologyservices.restdocs-spec</groupId>
+    <artifactId>restdocs-spec-maven-plugin</artifactId>
+    <version>${restdocs-spec.version}</version>
+    <executions>
+      <execution>
+        <goals>
+          <goal>generate</goal>
+        </goals>
+        <configuration>
+          <specifications>
+            <specification>
+              <type>OPENAPI_V2</type>
+            </specification>
+            <specification>
+              <type>OPENAPI_V3</type>
+              <format>JSON</format>
+            </specification>
+            <specification>
+              <type>POSTMAN_COLLECTION</type>
+              <filename>my-api-collection</filename>
+            </specification>
+          </specifications>
+        </configuration>
+      </execution>
+    </executions>
+  </plugin>
+```
+
 
 There are several other aspects you can optionally configure.  Here is the full set of options with their default values:
 

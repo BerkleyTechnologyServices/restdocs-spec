@@ -3,6 +3,7 @@ package com.berkleytechnologyservices.restdocs.spec.generator.openapi_v3;
 import com.berkleytechnologyservices.restdocs.spec.ApiDetails;
 import com.berkleytechnologyservices.restdocs.spec.Specification;
 import com.berkleytechnologyservices.restdocs.spec.generator.SpecificationGenerator;
+import com.berkleytechnologyservices.restdocs.spec.generator.SpecificationGeneratorException;
 import com.berkleytechnologyservices.restdocs.spec.generator.SpecificationGeneratorUtils;
 import com.epages.restdocs.apispec.model.ResourceModel;
 import com.epages.restdocs.apispec.openapi3.OpenApi3Generator;
@@ -33,19 +34,10 @@ public class OpenApi30SpecificationGenerator implements SpecificationGenerator {
   }
 
   @Override
-  public String generate(ApiDetails details, List<ResourceModel> models) {
-    List<Server> servers = new ArrayList<>();
-    for (String scheme : details.getSchemes()) {
-      try {
-        URL url = buildUrl(scheme, details.getHost(), details.getBasePath() == null ? "" : details.getBasePath());
-        servers.add(new Server().url(url.toString()));
-      } catch (MalformedURLException e) {
-      	throw new IllegalArgumentException("Invalid server URL", e);
-      }
-    }
+  public String generate(ApiDetails details, List<ResourceModel> models) throws SpecificationGeneratorException {
     return generator.generateAndSerialize(
             models,
-            servers,
+            createServerList(details),
             details.getName(),
             details.getDescription(),
             SpecificationGeneratorUtils.createTagDescriptionsMap(details.getTags()),
@@ -55,15 +47,16 @@ public class OpenApi30SpecificationGenerator implements SpecificationGenerator {
     );
   }
 
-  private URL buildUrl(String scheme, String host, String basePath) throws MalformedURLException {
-    URL url;
-    int indexOfColon = host.indexOf(':');
-    if (indexOfColon > -1 && indexOfColon + 1 < host.length()) {
-      url = new URL(scheme, host.substring(0, indexOfColon), Integer.parseInt(host.substring(indexOfColon + 1)), basePath);
-    } else {
-      url = new URL(scheme, host, basePath);
+  private List<Server> createServerList(ApiDetails details) throws SpecificationGeneratorException {
+    List<Server> servers = new ArrayList<>();
+    for (String scheme : details.getSchemes()) {
+      try {
+        URL url = SpecificationGeneratorUtils.createBaseUrl(scheme, details.getHost(), details.getBasePath() == null ? "" : details.getBasePath());
+        servers.add(new Server().url(url.toString()));
+      } catch (MalformedURLException e) {
+        throw new SpecificationGeneratorException("Unable to build server url.", e);
+      }
     }
-    return url;
+    return servers;
   }
-
 }
