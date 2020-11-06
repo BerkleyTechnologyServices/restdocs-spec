@@ -37,7 +37,7 @@ public class OpenApi30SpecificationGenerator implements SpecificationGenerator {
     List<Server> servers = new ArrayList<>();
     for (String scheme : details.getSchemes()) {
       try {
-        URL url = new URL(scheme, details.getHost(), details.getBasePath() == null ? "" : details.getBasePath());
+        URL url = buildUrl(scheme, details.getHost(), details.getBasePath() == null ? "" : details.getBasePath());
         servers.add(new Server().url(url.toString()));
       } catch (MalformedURLException e) {
       	throw new IllegalArgumentException("Invalid server URL", e);
@@ -53,6 +53,17 @@ public class OpenApi30SpecificationGenerator implements SpecificationGenerator {
             SpecificationGeneratorUtils.createOauth2Configuration(details.getAuthConfig()),
             details.getFormat().name().toLowerCase()
     );
+  }
+
+  private URL buildUrl(String scheme, String host, String basePath) throws MalformedURLException {
+    URL url;
+    int indexOfColon = host.indexOf(':');
+    if (indexOfColon > -1 && indexOfColon + 1 < host.length()) {
+      url = new URL(scheme, host.substring(0, indexOfColon), Integer.parseInt(host.substring(indexOfColon + 1)), basePath);
+    } else {
+      url = new URL(scheme, host, basePath);
+    }
+    return url;
   }
 
 }

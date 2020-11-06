@@ -34,37 +34,51 @@ public class OpenApi30SpecificationGeneratorTest {
 
     ApiDetails apiDetails = new ApiDetails();
 
-    ResourceModel model = resource(
-            "book-get",
-            "Get a book by id",
-            "book",
-            request(
-                    "/book/{id}",
-                    HTTPMethod.GET,
-                    list(
-                            requiredParam("id", "The unique identifier for the book.", "NUMBER")
-                    ),
-                    emptyList()
-            ),
-            response(
-                    200,
-                    "application/hal+json",
-                    list(),
-                    list(
-                            field("title", "Title of the book", "STRING"),
-                            field("author", "Author of the book", "STRING"),
-                            field("pages", "Number of pages in the book", "NUMBER")
-                    ),
-                    "The example response.",
-                    new Schema("MyCustomSchemaName")
 
-            )
-    );
-
-    String rawOutput = generator.generate(apiDetails, list(model));
+    String rawOutput = generator.generate(apiDetails, list(getMockResource()));
 
     assertThat(rawOutput)
             .isEqualToNormalizingNewlines(contentOfResource("/mock-specs/default-settings-openapi3.yml"));
+  }
+
+  @Test
+  public void testGenerateHostWithPort() {
+
+    ApiDetails apiDetails = new ApiDetails().host("example.com:8080");
+
+    String rawOutput = generator.generate(apiDetails, list(getMockResource()));
+
+    assertThat(rawOutput)
+      .isEqualToNormalizingNewlines(contentOfResource("/mock-specs/host-with-port-openapi3.yml"));
+  }
+
+  private ResourceModel getMockResource() {
+    return resource(
+      "book-get",
+      "Get a book by id",
+      "book",
+      request(
+        "/book/{id}",
+        HTTPMethod.GET,
+        list(
+          requiredParam("id", "The unique identifier for the book.", "NUMBER")
+        ),
+        emptyList()
+      ),
+      response(
+        200,
+        "application/hal+json",
+        list(),
+        list(
+          field("title", "Title of the book", "STRING"),
+          field("author", "Author of the book", "STRING"),
+          field("pages", "Number of pages in the book", "NUMBER")
+        ),
+        "The example response.",
+        new Schema("MyCustomSchemaName")
+
+      )
+    );
   }
 
   private static String contentOfResource(String resourceName) {
