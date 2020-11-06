@@ -23,7 +23,7 @@ paths:
         required: true
         type: number
       responses:
-        200:
+        "200":
           description: ""
           examples: {}
           schema:
