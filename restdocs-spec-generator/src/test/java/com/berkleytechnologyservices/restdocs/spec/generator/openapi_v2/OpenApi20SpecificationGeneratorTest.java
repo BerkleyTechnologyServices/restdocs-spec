@@ -59,7 +59,7 @@ public class OpenApi20SpecificationGeneratorTest {
     String rawOutput = generator.generate(apiDetails, list(model));
 
     assertThat(rawOutput)
-        .isEqualToNormalizingNewlines(contentOfResource("/mock-specs/default-settings.yml"));
+        .isEqualToNormalizingNewlines(contentOfResource("/mock-specs/openapi2/default-settings.yml"));
   }
 
   private static String contentOfResource(String resourceName) {

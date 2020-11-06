@@ -1,4 +1,4 @@
-package com.berkleytechnologyservices.restdocs.spec.generator.openapi_v3;
+package com.berkleytechnologyservices.restdocs.spec.generator.postman;
 
 import com.berkleytechnologyservices.restdocs.spec.ApiDetails;
 import com.berkleytechnologyservices.restdocs.spec.Specification;
@@ -10,20 +10,24 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static com.berkleytechnologyservices.restdocs.spec.generator.test.ResourceModels.*;
+import static com.berkleytechnologyservices.restdocs.spec.generator.test.ResourceModels.field;
+import static com.berkleytechnologyservices.restdocs.spec.generator.test.ResourceModels.request;
+import static com.berkleytechnologyservices.restdocs.spec.generator.test.ResourceModels.requiredParam;
+import static com.berkleytechnologyservices.restdocs.spec.generator.test.ResourceModels.resource;
+import static com.berkleytechnologyservices.restdocs.spec.generator.test.ResourceModels.response;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.contentOf;
 import static org.assertj.core.util.Lists.emptyList;
 import static org.assertj.core.util.Lists.list;
 
 @ExtendWith(MockitoExtension.class)
-public class OpenApi30SpecificationGeneratorTest {
+public class PostmanCollectionSpecificationGeneratorTest {
 
-  private final OpenApi30SpecificationGenerator generator = new OpenApi30SpecificationGenerator();
+  private final PostmanCollectionSpecificationGenerator generator = new PostmanCollectionSpecificationGenerator();
 
   @Test
   public void testGetSpecification() {
-    assertThat(generator.getSpecification()).isEqualTo(Specification.OPENAPI_V3);
+    assertThat(generator.getSpecification()).isEqualTo(Specification.POSTMAN_COLLECTION);
   }
 
   @Test
@@ -35,7 +39,7 @@ public class OpenApi30SpecificationGeneratorTest {
     String rawOutput = generator.generate(apiDetails, list(getMockResource()));
 
     assertThat(rawOutput)
-            .isEqualToNormalizingNewlines(contentOfResource("/mock-specs/openapi3/default-settings.yml"));
+            .isEqualToNormalizingNewlines(contentOfResource("/mock-specs/postman/default-settings.json"));
   }
 
   @Test
@@ -46,7 +50,7 @@ public class OpenApi30SpecificationGeneratorTest {
     String rawOutput = generator.generate(apiDetails, list(getMockResource()));
 
     assertThat(rawOutput)
-      .isEqualToNormalizingNewlines(contentOfResource("/mock-specs/openapi3/host-with-port.yml"));
+      .isEqualToNormalizingNewlines(contentOfResource("/mock-specs/postman/host-with-port.json"));
   }
 
   private ResourceModel getMockResource() {
@@ -79,6 +83,6 @@ public class OpenApi30SpecificationGeneratorTest {
   }
 
   private static String contentOfResource(String resourceName) {
-    return contentOf(OpenApi30SpecificationGeneratorTest.class.getResource(resourceName));
+    return contentOf(PostmanCollectionSpecificationGeneratorTest.class.getResource(resourceName));
   }
 }
