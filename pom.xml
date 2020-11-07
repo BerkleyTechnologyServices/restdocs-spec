@@ -6,7 +6,7 @@
 
   <groupId>com.github.berkleytechnologyservices.restdocs-spec</groupId>
   <artifactId>restdocs-spec</artifactId>
-  <version>0.19</version>
+  <version>0.20-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>${project.groupId}:${project.artifactId}</name>
