@@ -1,6 +1,6 @@
 # Restdocs Spec Generation Support
 
-[![Build Status](https://travis-ci.com/BerkleyTechnologyServices/restdocs-spec.svg?branch=master)](https://travis-ci.com/BerkleyTechnologyServices/restdocs-spec)
+[![Build Status](https://github.com/BerkleyTechnologyServices/restdocs-spec/workflows/CI/badge.svg?branch=master&event=push)](https://github.com/BerkleyTechnologyServices/restdocs-spec/actions?query=branch%3Amaster+workflow%3ACI)
 [ ![Download](https://api.bintray.com/packages/berkleytechnologyservices/stage/restdocs-spec/images/download.svg) ](https://bintray.com/berkleytechnologyservices/stage/restdocs-spec/_latestVersion)
 
 ## Usage
@@ -26,9 +26,9 @@ Here is a typical `pom.xml` configuration:
       </execution>
     </executions>
   </plugin>
-``` 
+```
 
-That will read your `resource.json` snippet files found under the `${project.build.directory}/generated-snippets` 
+That will read your `resource.json` snippet files found under the `${project.build.directory}/generated-snippets`
 directory and produce an OpenAPI 2.0 YAML file at `${project.build.directory}/restdocs-spec/openapi-2.0.yml`.
 
 If you would prefer that the OpenAPI 2.0 document is in JSON format you can specify it like this:
@@ -196,7 +196,7 @@ it using the `<oauth2 />` element.  Here is an example:
               <scope>
                 <name>read</name>
                 <description>Access to read operations.</description>
-              </scope>            
+              </scope>
               <scope>
                 <name>write</name>
                 <description>Access to write operations.</description>
@@ -215,7 +215,7 @@ You can find a full example project here: https://github.com/BerkleyTechnologySe
 
 ## Still in development
 
-* Support for additional specification formats is currently in development.  We plan to add 
+* Support for additional specification formats is currently in development.  We plan to add
   support for Postman Collections and RAML.
 * Currently the plugin is not available in Maven Central.  However, it is available through
   [JCenter](https://bintray.com/bintray/jcenter) and we do plan to eventually get it into Maven Central.
