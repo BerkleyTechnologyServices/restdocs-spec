@@ -3,6 +3,9 @@
     "config:base"
   ],
   "packageRules": [{
+    "updateTypes": ["minor", "patch", "pin", "digest"],
+    "automerge": true
+  }, {
     "packagePatterns": ["^com.epages:restdocs"],
     "groupName": "restdocs-api-spec"
   }, {
