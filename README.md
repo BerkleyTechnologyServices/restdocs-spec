@@ -1,6 +1,6 @@
 # Restdocs Spec Generation Support
 
-[![Build Status](https://github.com/BerkleyTechnologyServices/restdocs-spec/workflows/CI/badge.svg?branch=master&event=push)](https://github.com/BerkleyTechnologyServices/restdocs-spec/actions?query=branch%3Amaster+workflow%3ACI)
+[![Build Status](https://github.com/BerkleyTechnologyServices/restdocs-spec/workflows/CI/badge.svg?branch=master&event=push)](https://github.com/BerkleyTechnologyServices/restdocs-spec/actions?query=branch%3Amaster+workflow%3ACI) [![Join the chat at https://gitter.im/BerkleyTechnologyServices/restdocs-spec](https://badges.gitter.im/BerkleyTechnologyServices/restdocs-spec.svg)](https://gitter.im/BerkleyTechnologyServices/restdocs-spec?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [ ![Download](https://api.bintray.com/packages/berkleytechnologyservices/stage/restdocs-spec/images/download.svg) ](https://bintray.com/berkleytechnologyservices/stage/restdocs-spec/_latestVersion)
 
 ## Usage
