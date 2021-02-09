@@ -15,7 +15,7 @@ Here is a typical `pom.xml` configuration:
 
 ```xml
   <plugin>
-    <groupId>com.github.berkleytechnologyservices.restdocs-spec</groupId>
+    <groupId>io.github.berkleytechnologyservices</groupId>
     <artifactId>restdocs-spec-maven-plugin</artifactId>
     <version>${restdocs-spec.version}</version>
     <executions>
@@ -35,7 +35,7 @@ If you would prefer that the OpenAPI 2.0 document is in JSON format you can spec
 
 ```xml
   <plugin>
-    <groupId>com.github.berkleytechnologyservices.restdocs-spec</groupId>
+    <groupId>io.github.berkleytechnologyservices</groupId>
     <artifactId>restdocs-spec-maven-plugin</artifactId>
     <version>${restdocs-spec.version}</version>
     <executions>
@@ -54,7 +54,7 @@ If you would prefer that the OpenAPI 2.0 document is in JSON format you can spec
 You can also generate OpenAPI 3.0 or Postman Collection specification. For instance, this would generate OpenAPI 3.0:
 ```xml
   <plugin>
-    <groupId>com.github.berkleytechnologyservices.restdocs-spec</groupId>
+    <groupId>io.github.berkleytechnologyservices</groupId>
     <artifactId>restdocs-spec-maven-plugin</artifactId>
     <version>${restdocs-spec.version}</version>
     <executions>
@@ -73,7 +73,7 @@ You can also generate OpenAPI 3.0 or Postman Collection specification. For insta
 Finally, you can also generate multiple formats at once using the more verbose syntax:
 ```xml
   <plugin>
-    <groupId>com.github.berkleytechnologyservices.restdocs-spec</groupId>
+    <groupId>io.github.berkleytechnologyservices</groupId>
     <artifactId>restdocs-spec-maven-plugin</artifactId>
     <version>${restdocs-spec.version}</version>
     <executions>
@@ -106,7 +106,7 @@ There are several other aspects you can optionally configure.  Here is the full 
 
 ```xml
   <plugin>
-    <groupId>com.github.berkleytechnologyservices.restdocs-spec</groupId>
+    <groupId>io.github.berkleytechnologyservices</groupId>
     <artifactId>restdocs-spec-maven-plugin</artifactId>
     <version>${restdocs-spec.version}</version>
     <executions>
@@ -144,7 +144,7 @@ By default the plugin will not generate any tags.  You can optionally provide ta
 
 ```xml
   <plugin>
-    <groupId>com.github.berkleytechnologyservices.restdocs-spec</groupId>
+    <groupId>io.github.berkleytechnologyservices</groupId>
     <artifactId>restdocs-spec-maven-plugin</artifactId>
     <version>${restdocs-spec.version}</version>
     <executions>
@@ -176,7 +176,7 @@ it using the `<oauth2 />` element.  Here is an example:
 
 ```xml
   <plugin>
-    <groupId>com.github.berkleytechnologyservices.restdocs-spec</groupId>
+    <groupId>io.github.berkleytechnologyservices</groupId>
     <artifactId>restdocs-spec-maven-plugin</artifactId>
     <version>${restdocs-spec.version}</version>
     <executions>
@@ -217,5 +217,3 @@ You can find a full example project here: https://github.com/BerkleyTechnologySe
 
 * Support for additional specification formats is currently in development.  We plan to add
   support for Postman Collections and RAML.
-* Currently the plugin is not available in Maven Central.  However, it is available through
-  [JCenter](https://bintray.com/bintray/jcenter) and we do plan to eventually get it into Maven Central.
