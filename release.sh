@@ -8,7 +8,7 @@ echo "creating release" \
   && git add pom.xml */pom.xml \
   && git commit -m "release $releaseVersion" \
   && git tag -a $releaseVersion -m "release $releaseVersion" \
-  && ./mvnw -l release.log clean deploy \
+  && ./mvnw -l release.log clean deploy -P release \
   && echo "release created: $releaseVersion" \
   && echo "preparing for next release" \
   && ./mvnw -q build-helper:parse-version \
