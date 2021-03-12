@@ -68,7 +68,7 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.version>3.3.1</maven.version>
     <maven-plugin-tools.version>3.6.0</maven-plugin-tools.version>
-    <restdocs-api-spec.version>0.10.3</restdocs-api-spec.version>
+    <restdocs-api-spec.version>0.10.4</restdocs-api-spec.version>
     <junit.version>5.7.1</junit.version>
     <assertj.version>3.19.0</assertj.version>
     <mockito.version>3.8.0</mockito.version>
