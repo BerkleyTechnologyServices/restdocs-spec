@@ -19,7 +19,7 @@ paths:
         description: The unique identifier for the book.
         required: true
         schema:
-          type: string
+          type: number
       responses:
         "200":
           description: "200"
