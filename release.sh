@@ -19,7 +19,7 @@ echo "creating release" \
   && git commit -m "prepare for development of $nextVersion" \
   && echo "ready for next release: $nextVersion" \
   && echo "pushing changes" \
-  && git push upstream master:master \
-  && git push upstream $releaseVersion:$releaseVersion
+  && git push origin master:master \
+  && git push origin $releaseVersion:$releaseVersion
 
 
