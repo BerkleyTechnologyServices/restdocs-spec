@@ -3,6 +3,7 @@ package com.berkleytechnologyservices.restdocs.spec;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 public class ApiDetails {
 
@@ -15,7 +16,7 @@ public class ApiDetails {
   private String name;
   private String version;
   private String description;
-  private String host;
+  private Set<String> hosts;
   private String basePath;
   private List<String> schemes;
   private SpecificationFormat format;
@@ -27,7 +28,7 @@ public class ApiDetails {
   public ApiDetails() {
     this.name = DEFAULT_NAME;
     this.version = DEFAULT_VERSION;
-    this.host = DEFAULT_HOST;
+    this.hosts = Collections.singleton(DEFAULT_HOST);
     this.basePath = null;
     this.schemes = DEFAULT_SCHEMES;
     this.format = DEFAULT_FORMAT;
@@ -63,12 +64,16 @@ public class ApiDetails {
     return this;
   }
 
-  public String getHost() {
-    return host;
+  public Set<String> getHosts() {
+    return hosts;
   }
 
-  public ApiDetails host(String host) {
-    this.host = host != null ? host : DEFAULT_HOST;
+  public String getHost() {
+    return getHosts().stream().findFirst().orElseThrow();
+  }
+
+  public ApiDetails hosts(Set<String> hosts) {
+    this.hosts = (hosts != null && !hosts.isEmpty()) ? hosts : Collections.singleton(DEFAULT_HOST);
     return this;
   }
 

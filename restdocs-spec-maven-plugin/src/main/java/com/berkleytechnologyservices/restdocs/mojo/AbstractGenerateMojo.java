@@ -21,6 +21,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -49,9 +50,15 @@ public abstract class AbstractGenerateMojo extends AbstractMojo {
   private String description;
 
   /**
+   * More hosts to specify (OpenAPI 3.0)
+   */
+  @Parameter
+  private Set<String> hosts;
+
+  /**
    * Host
    */
-  @Parameter(defaultValue = "localhost", required = true)
+  @Parameter(defaultValue = "localhost")
   private String host;
 
   /**
@@ -207,7 +214,7 @@ public abstract class AbstractGenerateMojo extends AbstractMojo {
         .name(name)
         .version(version)
         .description(description)
-        .host(host)
+        .hosts((hosts == null || hosts.isEmpty()) ? Collections.singleton(host) : hosts)
         .basePath(basePath)
         .schemes(schemes)
         .format(options.getFormat())

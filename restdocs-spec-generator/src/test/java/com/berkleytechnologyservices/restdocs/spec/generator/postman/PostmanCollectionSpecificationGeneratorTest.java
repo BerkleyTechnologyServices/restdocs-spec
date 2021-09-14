@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Collections;
+
 import static com.berkleytechnologyservices.restdocs.spec.generator.test.ResourceModels.field;
 import static com.berkleytechnologyservices.restdocs.spec.generator.test.ResourceModels.request;
 import static com.berkleytechnologyservices.restdocs.spec.generator.test.ResourceModels.requiredParam;
@@ -44,7 +46,7 @@ public class PostmanCollectionSpecificationGeneratorTest {
   @Test
   public void testGenerateHostWithPort() throws SpecificationGeneratorException {
 
-    ApiDetails apiDetails = new ApiDetails().host("example.com:8080");
+    ApiDetails apiDetails = new ApiDetails().hosts(Collections.singleton("example.com:8080"));
 
     String rawOutput = generator.generate(apiDetails, list(getMockResource()));
 

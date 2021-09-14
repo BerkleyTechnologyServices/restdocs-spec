@@ -51,10 +51,13 @@ public class OpenApi30SpecificationGenerator implements SpecificationGenerator {
 
   private List<Server> createServerList(ApiDetails details) throws SpecificationGeneratorException {
     List<Server> servers = new ArrayList<>();
+
     for (String scheme : details.getSchemes()) {
       try {
-        URL url = SpecificationGeneratorUtils.createBaseUrl(scheme, details.getHost(), details.getBasePath() == null ? "" : details.getBasePath());
-        servers.add(new Server().url(url.toString()));
+        for (String host : details.getHosts()) {
+          URL url = SpecificationGeneratorUtils.createBaseUrl(scheme, host, details.getBasePath() == null ? "" : details.getBasePath());
+          servers.add(new Server().url(url.toString()));
+        }
       } catch (MalformedURLException e) {
         throw new SpecificationGeneratorException("Unable to build server url.", e);
       }
