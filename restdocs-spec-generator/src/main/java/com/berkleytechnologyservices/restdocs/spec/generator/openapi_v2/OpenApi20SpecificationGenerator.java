@@ -33,7 +33,7 @@ public class OpenApi20SpecificationGenerator implements SpecificationGenerator {
     return generator.generateAndSerialize(
         models,
         details.getBasePath(),
-        details.getHost(),
+        details.getHosts().iterator().next(),
         details.getSchemes(),
         details.getName(),
         details.getDescription(),
