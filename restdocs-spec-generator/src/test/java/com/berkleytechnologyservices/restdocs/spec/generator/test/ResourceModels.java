@@ -144,6 +144,14 @@ public final class ResourceModels {
   }
 
   public static ParameterDescriptor param(String name, String description, String type, boolean optional) {
-    return new ParameterDescriptor(name, description, type, optional, false, new Attributes());
+    return param(name, description, type, null, optional);
+  }
+
+  public static ParameterDescriptor param(String name,
+                                          String description,
+                                          String type,
+                                          Object defaultValue,
+                                          boolean optional) {
+    return new ParameterDescriptor(name, description, type, defaultValue, optional, false, new Attributes());
   }
 }
