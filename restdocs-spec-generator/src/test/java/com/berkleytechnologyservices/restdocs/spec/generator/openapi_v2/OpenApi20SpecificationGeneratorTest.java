@@ -43,6 +43,7 @@ public class OpenApi20SpecificationGeneratorTest {
             list(
                 requiredParam("id", "The unique identifier for the book.", "NUMBER")
             ),
+            emptyList(),
             emptyList()
         ),
         response(

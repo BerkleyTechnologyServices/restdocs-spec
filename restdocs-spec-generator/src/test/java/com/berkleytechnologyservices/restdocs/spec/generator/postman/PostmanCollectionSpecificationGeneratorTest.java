@@ -64,6 +64,7 @@ public class PostmanCollectionSpecificationGeneratorTest {
         list(
           requiredParam("id", "The unique identifier for the book.", "NUMBER")
         ),
+        emptyList(),
         emptyList()
       ),
       response(
