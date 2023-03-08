@@ -8,13 +8,11 @@ import com.berkleytechnologyservices.restdocs.spec.Tag;
 import com.berkleytechnologyservices.restdocs.spec.generator.SpecificationGeneratorException;
 import com.berkleytechnologyservices.restdocs.spec.generator.SpecificationGeneratorFactory;
 import com.epages.restdocs.apispec.model.ResourceModel;
+import com.google.inject.Inject;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugins.annotations.LifecyclePhase;
-import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
-import javax.inject.Inject;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;

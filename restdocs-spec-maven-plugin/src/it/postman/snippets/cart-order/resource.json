@@ -10,7 +10,8 @@
     "contentType" : null,
     "headers" : [ ],
     "pathParameters" : [ ],
-    "requestParameters" : [ ],
+    "queryParameters" : [ ],
+    "formParameters" : [ ],
     "requestFields" : [ ],
     "example" : null,
     "securityRequirements" : null
