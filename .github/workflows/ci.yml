@@ -18,7 +18,7 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v3
         with:
-          distribution: adopt
+          distribution: temurin
           java-version: 17
       - name: Build
         run: ./mvnw clean verify -Prun-its
