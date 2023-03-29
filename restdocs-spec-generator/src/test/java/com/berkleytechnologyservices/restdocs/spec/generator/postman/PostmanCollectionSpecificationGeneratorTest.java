@@ -35,7 +35,6 @@ public class PostmanCollectionSpecificationGeneratorTest {
 
     ApiDetails apiDetails = new ApiDetails();
 
-
     String rawOutput = generator.generate(apiDetails, list(getMockResource()));
 
     assertThat(rawOutput)
