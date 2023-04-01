@@ -1,7 +1,7 @@
 # Restdocs Spec Generation Support
 
 [![Build Status](https://github.com/BerkleyTechnologyServices/restdocs-spec/workflows/CI/badge.svg?branch=master&event=push)](https://github.com/BerkleyTechnologyServices/restdocs-spec/actions?query=branch%3Amaster+workflow%3ACI)
-[![Maven Central](https://img.shields.io/maven-central/v/io.github.berkleytechnologyservices/restdocs-spec)](https://search.maven.org/artifact/io.github.berkleytechnologyservices/restdocs-spec)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.berkleytechnologyservices/restdocs-spec)](https://central.sonatype.com/search?q=a%253Arestdocs-spec%2520g%253Aio.github.berkleytechnologyservices&namespace=io.github.berkleytechnologyservices)
 
 ## Usage
 
