@@ -74,16 +74,16 @@ public final class ResourceModels {
   public static RequestModel request(String path,
                                      HTTPMethod method,
                                      List<ParameterDescriptor> pathParameters,
-                                     List<ParameterDescriptor> requestParameters) {
+                                     List<ParameterDescriptor> queryParameters) {
     return request(
         path,
         method,
         null,
         null,
-        emptyList(),
+        List.of(),
         pathParameters,
-        requestParameters,
-        emptyList(),
+        queryParameters,
+        List.of(),
         null,
         null
     );
@@ -95,7 +95,7 @@ public final class ResourceModels {
                                      SecurityRequirements securityRequirements,
                                      List<HeaderDescriptor> headers,
                                      List<ParameterDescriptor> pathParameters,
-                                     List<ParameterDescriptor> requestParameters,
+                                     List<ParameterDescriptor> queryParameters,
                                      List<? extends FieldDescriptor> requestFields, String example, Schema schema) {
     return new RequestModel(
         path,
@@ -104,7 +104,8 @@ public final class ResourceModels {
         securityRequirements,
         headers,
         pathParameters,
-        requestParameters,
+        queryParameters,
+        List.of(),
         requestFields,
         example,
         schema

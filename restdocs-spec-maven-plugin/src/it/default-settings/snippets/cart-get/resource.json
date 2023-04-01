@@ -16,7 +16,8 @@
       "type" : "STRING",
       "optional" : false
     } ],
-    "requestParameters" : [ ],
+    "queryParameters" : [ ],
+    "formParameters" : [ ],
     "requestFields" : [ ],
     "example" : null,
     "securityRequirements" : null

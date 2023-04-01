@@ -10,7 +10,8 @@
     "contentType" : "text/uri-list",
     "headers" : [ ],
     "pathParameters" : [ ],
-    "requestParameters" : [ ],
+    "queryParameters" : [ ],
+    "formParameters" : [ ],
     "requestFields" : [ ],
     "example" : "http://localhost/products/1",
     "securityRequirements" : null

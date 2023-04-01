@@ -51,6 +51,11 @@
       <groupId>com.epages</groupId>
       <artifactId>restdocs-api-spec-model</artifactId>
     </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.module</groupId>
+      <artifactId>jackson-module-kotlin</artifactId>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
 
   <build>

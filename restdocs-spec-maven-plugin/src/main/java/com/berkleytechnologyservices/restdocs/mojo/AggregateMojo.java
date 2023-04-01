@@ -9,15 +9,18 @@ import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 /**
  * This mojo generates a single api specification by aggregating snippet files from all child projects.
  */
+@Named
 @Mojo(name = "aggregate", defaultPhase = LifecyclePhase.PREPARE_PACKAGE, aggregator = true, threadSafe = true)
 public class AggregateMojo extends AbstractGenerateMojo {
 

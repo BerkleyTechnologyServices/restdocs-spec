@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.module.kotlin.KotlinModule;
 import org.apache.maven.plugin.MojoExecutionException;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.File;
 import java.io.IOException;
@@ -22,6 +23,7 @@ public class SnippetReader {
 
   private final ObjectMapper objectMapper;
 
+  @Inject
   public SnippetReader() {
     this(new ObjectMapper()
             .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
