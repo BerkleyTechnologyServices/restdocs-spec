@@ -8,12 +8,14 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import java.io.File;
 import java.util.List;
 
 /**
  * This mojo generates an api specification using snippet files.
  */
+@Named
 @Mojo(name = "generate", defaultPhase = LifecyclePhase.PREPARE_PACKAGE, threadSafe = true)
 public class GenerateMojo extends AbstractGenerateMojo {
 
