@@ -34,6 +34,10 @@ components:
   schemas:
     MyCustomSchemaName:
       title: MyCustomSchemaName
+      required:
+      - author
+      - pages
+      - title
       type: object
       properties:
         pages:

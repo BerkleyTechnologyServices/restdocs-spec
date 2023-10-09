@@ -1,0 +1,26 @@
+{
+  "operationId" : "carts-create",
+  "summary" : "Create a cart",
+  "description" : "Create a cart",
+  "privateResource" : false,
+  "deprecated" : false,
+  "request" : {
+    "path" : "/carts",
+    "method" : "POST",
+    "contentType" : null,
+    "headers" : [ ],
+    "pathParameters" : [ ],
+    "queryParameters" : [ ],
+    "formParameters" : [ ],
+    "requestFields" : [ ],
+    "example" : null,
+    "securityRequirements" : null
+  },
+  "response" : {
+    "status" : 201,
+    "contentType" : "application/hal+json",
+    "headers" : [ ],
+    "responseFields" : [ ],
+    "example" : "{\r\n  \"total\" : 0,\r\n  \"products\" : [ ],\r\n  \"_links\" : {\r\n    \"self\" : {\r\n      \"href\" : \"http://localhost:8080/carts/4\"\r\n    },\r\n    \"order\" : {\r\n      \"href\" : \"http://localhost:8080/carts/4/order\"\r\n    }\r\n  }\r\n}"
+  }
+}

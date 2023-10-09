@@ -1,6 +1,7 @@
 package com.berkleytechnologyservices.restdocs.spec.generator.openapi_v3;
 
 import com.berkleytechnologyservices.restdocs.spec.ApiDetails;
+import com.berkleytechnologyservices.restdocs.spec.Contact;
 import com.berkleytechnologyservices.restdocs.spec.Specification;
 import com.berkleytechnologyservices.restdocs.spec.generator.SpecificationGenerator;
 import com.berkleytechnologyservices.restdocs.spec.generator.SpecificationGeneratorException;
@@ -43,7 +44,8 @@ public class OpenApi30SpecificationGenerator implements SpecificationGenerator {
             SpecificationGeneratorUtils.createTagDescriptionsMap(details.getTags()),
             details.getVersion(),
             SpecificationGeneratorUtils.createOauth2Configuration(details.getAuthConfig()),
-            details.getFormat().name().toLowerCase()
+            details.getFormat().name().toLowerCase(),
+            details.getContact().map(this::toSwaggerContact).orElse(null)
     );
   }
 
@@ -58,5 +60,10 @@ public class OpenApi30SpecificationGenerator implements SpecificationGenerator {
       }
     }
     return servers;
+  }
+
+  private io.swagger.v3.oas.models.info.Contact toSwaggerContact(Contact contact) {
+    io.swagger.v3.oas.models.info.Contact swaggerContact = new io.swagger.v3.oas.models.info.Contact();
+    return swaggerContact.name(contact.getName()).email(contact.getEmail()).url(contact.getUrl());
   }
 }

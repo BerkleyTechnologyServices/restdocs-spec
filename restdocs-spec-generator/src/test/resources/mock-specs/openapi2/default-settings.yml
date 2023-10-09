@@ -27,10 +27,14 @@ paths:
           description: ""
           examples: {}
           schema:
-            $ref: '#/definitions/book_id-1050330160'
+            $ref: '#/definitions/book_id-1528421121'
 definitions:
-  book_id-1050330160:
+  book_id-1528421121:
     type: object
+    required:
+    - author
+    - pages
+    - title
     properties:
       pages:
         type: number

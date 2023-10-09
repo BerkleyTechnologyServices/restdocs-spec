@@ -1,0 +1,26 @@
+{
+  "operationId" : "cart-add-product",
+  "summary" : "Add products to a cart",
+  "description" : "Add products to a cart",
+  "privateResource" : false,
+  "deprecated" : false,
+  "request" : {
+    "path" : "/carts/{id}/products",
+    "method" : "POST",
+    "contentType" : "text/uri-list",
+    "headers" : [ ],
+    "pathParameters" : [ ],
+    "queryParameters" : [ ],
+    "formParameters" : [ ],
+    "requestFields" : [ ],
+    "example" : "http://localhost/products/1",
+    "securityRequirements" : null
+  },
+  "response" : {
+    "status" : 200,
+    "contentType" : "application/hal+json",
+    "headers" : [ ],
+    "responseFields" : [ ],
+    "example" : "{\r\n  \"total\" : 49.99,\r\n  \"products\" : [ {\r\n    \"quantity\" : 1,\r\n    \"product\" : {\r\n      \"name\" : \"Fancy pants\",\r\n      \"price\" : 49.99\r\n    },\r\n    \"_links\" : {\r\n      \"product\" : {\r\n        \"href\" : \"http://localhost:8080/products/1\"\r\n      }\r\n    }\r\n  } ],\r\n  \"_links\" : {\r\n    \"self\" : {\r\n      \"href\" : \"http://localhost:8080/carts/1\"\r\n    },\r\n    \"order\" : {\r\n      \"href\" : \"http://localhost:8080/carts/1/order\"\r\n    }\r\n  }\r\n}"
+  }
+}
