@@ -8,7 +8,7 @@
   <parent>
     <groupId>io.github.berkleytechnologyservices</groupId>
     <artifactId>restdocs-spec</artifactId>
-    <version>0.23-SNAPSHOT</version>
+    <version>0.23</version>
   </parent>
 
   <artifactId>restdocs-spec-maven-plugin</artifactId>
