@@ -2,6 +2,7 @@ package com.berkleytechnologyservices.restdocs.spec;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 public class ApiDetails {
 
@@ -20,6 +21,8 @@ public class ApiDetails {
   private SpecificationFormat format;
   private AuthConfig authConfig;
   private List<Tag> tags;
+
+  private Contact contact;
   
   public ApiDetails() {
     this.name = DEFAULT_NAME;
@@ -30,6 +33,7 @@ public class ApiDetails {
     this.format = DEFAULT_FORMAT;
     this.authConfig = new AuthConfig();
     this.tags = Collections.emptyList();
+    this.contact = null;
   }
 
   public String getName() {
@@ -110,6 +114,15 @@ public class ApiDetails {
 
   public ApiDetails tags(List<Tag> tags) {
     this.tags = tags != null ? tags : this.tags;
+    return this;
+  }
+
+  public Optional<Contact> getContact() {
+    return Optional.ofNullable(contact);
+  }
+
+  public ApiDetails contact(Contact contact) {
+    this.contact = contact;
     return this;
   }
 }

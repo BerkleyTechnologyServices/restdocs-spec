@@ -1,6 +1,7 @@
 package com.berkleytechnologyservices.restdocs.spec.generator.openapi_v3;
 
 import com.berkleytechnologyservices.restdocs.spec.ApiDetails;
+import com.berkleytechnologyservices.restdocs.spec.Contact;
 import com.berkleytechnologyservices.restdocs.spec.Specification;
 import com.berkleytechnologyservices.restdocs.spec.generator.SpecificationGeneratorException;
 import com.epages.restdocs.apispec.model.HTTPMethod;
@@ -47,6 +48,21 @@ public class OpenApi30SpecificationGeneratorTest {
 
     assertThat(rawOutput)
       .isEqualToNormalizingNewlines(contentOfResource("/mock-specs/openapi3/host-with-port.yml"));
+  }
+
+  @Test
+  public void testGenerateContact() throws SpecificationGeneratorException {
+    Contact contact = new Contact();
+    contact.setName("John Doe");
+    contact.setEmail("john@example.com");
+    contact.setUrl("https://john.example.com");
+
+    ApiDetails apiDetails = new ApiDetails().contact(contact);
+
+    String rawOutput = generator.generate(apiDetails, list(getMockResource()));
+
+    assertThat(rawOutput)
+        .isEqualToNormalizingNewlines(contentOfResource("/mock-specs/openapi3/contact.yml"));
   }
 
   private ResourceModel getMockResource() {

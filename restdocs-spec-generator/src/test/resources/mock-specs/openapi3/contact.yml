@@ -1,6 +1,10 @@
 openapi: 3.0.1
 info:
   title: API Documentation
+  contact:
+    name: John Doe
+    url: https://john.example.com
+    email: john@example.com
   version: 1.0.0
 servers:
 - url: http://localhost

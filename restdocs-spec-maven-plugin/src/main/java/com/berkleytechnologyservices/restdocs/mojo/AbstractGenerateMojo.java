@@ -2,6 +2,7 @@ package com.berkleytechnologyservices.restdocs.mojo;
 
 import com.berkleytechnologyservices.restdocs.spec.ApiDetails;
 import com.berkleytechnologyservices.restdocs.spec.AuthConfig;
+import com.berkleytechnologyservices.restdocs.spec.Contact;
 import com.berkleytechnologyservices.restdocs.spec.Specification;
 import com.berkleytechnologyservices.restdocs.spec.SpecificationFormat;
 import com.berkleytechnologyservices.restdocs.spec.Tag;
@@ -114,6 +115,9 @@ public abstract class AbstractGenerateMojo extends AbstractMojo {
   @Parameter
   private List<Tag> tags;
 
+  @Parameter
+  private Contact contact;
+
   private final SpecificationGeneratorFactory specificationGeneratorFactory;
 
   @Inject
@@ -202,13 +206,14 @@ public abstract class AbstractGenerateMojo extends AbstractMojo {
     return new ApiDetails()
         .name(name)
         .version(version)
-		.description(description)
+        .description(description)
         .host(host)
         .basePath(basePath)
         .schemes(schemes)
         .format(options.getFormat())
         .authConfig(oauth2)
-        .tags(tags);
+        .tags(tags)
+        .contact(contact);
   }
 
   private List<SpecificationOptions> getAllSpecificationOptions() {
