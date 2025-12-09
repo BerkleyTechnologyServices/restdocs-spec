@@ -58,7 +58,7 @@
     <restdocs-api-spec.version>0.19.4</restdocs-api-spec.version>
     <junit.version>5.14.1</junit.version>
     <assertj.version>3.27.6</assertj.version>
-    <mockito.version>5.20.0</mockito.version>
+    <mockito.version>5.21.0</mockito.version>
   </properties>
 
   <modules>
