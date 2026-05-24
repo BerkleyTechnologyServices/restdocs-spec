@@ -2,6 +2,7 @@ package com.berkleytechnologyservices.restdocs.spec.generator.openapi_v3;
 
 import com.berkleytechnologyservices.restdocs.spec.ApiDetails;
 import com.berkleytechnologyservices.restdocs.spec.Contact;
+import com.berkleytechnologyservices.restdocs.spec.Host;
 import com.berkleytechnologyservices.restdocs.spec.Specification;
 import com.berkleytechnologyservices.restdocs.spec.generator.SpecificationGeneratorException;
 import com.epages.restdocs.apispec.model.HTTPMethod;
@@ -44,7 +45,7 @@ public class OpenApi30SpecificationGeneratorTest {
   @Test
   public void testGenerateHostWithPort() throws SpecificationGeneratorException {
 
-    ApiDetails apiDetails = new ApiDetails().hosts(Collections.singleton("example.com:8080"));
+    ApiDetails apiDetails = new ApiDetails().hosts(Collections.singletonList(new Host("example.com:8080")));
 
     String rawOutput = generator.generate(apiDetails, list(getMockResource()));
 
