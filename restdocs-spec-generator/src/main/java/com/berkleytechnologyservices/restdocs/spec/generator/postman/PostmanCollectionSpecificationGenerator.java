@@ -61,7 +61,7 @@ public class PostmanCollectionSpecificationGenerator implements SpecificationGen
     }
 
     try {
-      return SpecificationGeneratorUtils.createBaseUrl(details.getSchemes().get(0), details.getHosts().iterator().next(), details.getBasePath()).toString();
+      return SpecificationGeneratorUtils.createBaseUrl(details.getSchemes().get(0), details.getHosts().get(0).getValue(), details.getBasePath()).toString();
     } catch (MalformedURLException e) {
       throw new SpecificationGeneratorException("Unable to build base url.", e);
     }

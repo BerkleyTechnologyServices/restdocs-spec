@@ -2,6 +2,7 @@ package com.berkleytechnologyservices.restdocs.spec.generator.openapi_v3;
 
 import com.berkleytechnologyservices.restdocs.spec.ApiDetails;
 import com.berkleytechnologyservices.restdocs.spec.Contact;
+import com.berkleytechnologyservices.restdocs.spec.Host;
 import com.berkleytechnologyservices.restdocs.spec.Specification;
 import com.berkleytechnologyservices.restdocs.spec.generator.SpecificationGenerator;
 import com.berkleytechnologyservices.restdocs.spec.generator.SpecificationGeneratorException;
@@ -54,9 +55,12 @@ public class OpenApi30SpecificationGenerator implements SpecificationGenerator {
 
     for (String scheme : details.getSchemes()) {
       try {
-        for (String host : details.getHosts()) {
-          URL url = SpecificationGeneratorUtils.createBaseUrl(scheme, host, details.getBasePath() == null ? "" : details.getBasePath());
-          servers.add(new Server().url(url.toString()));
+        for (Host host : details.getHosts()) {
+          URL url = SpecificationGeneratorUtils.createBaseUrl(scheme, host.getValue(), details.getBasePath() == null ? "" : details.getBasePath());
+          Server server = new Server();
+          server.url(url.toString());
+          server.description(host.getDescription());
+          servers.add(server);
         }
       } catch (MalformedURLException e) {
         throw new SpecificationGeneratorException("Unable to build server url.", e);
