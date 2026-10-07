@@ -1,6 +1,7 @@
 package com.berkleytechnologyservices.restdocs.spec.generator.postman;
 
 import com.berkleytechnologyservices.restdocs.spec.ApiDetails;
+import com.berkleytechnologyservices.restdocs.spec.Host;
 import com.berkleytechnologyservices.restdocs.spec.Specification;
 import com.berkleytechnologyservices.restdocs.spec.generator.SpecificationGeneratorException;
 import com.epages.restdocs.apispec.model.HTTPMethod;
@@ -12,11 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Collections;
 
-import static com.berkleytechnologyservices.restdocs.spec.generator.test.ResourceModels.field;
-import static com.berkleytechnologyservices.restdocs.spec.generator.test.ResourceModels.request;
-import static com.berkleytechnologyservices.restdocs.spec.generator.test.ResourceModels.requiredParam;
-import static com.berkleytechnologyservices.restdocs.spec.generator.test.ResourceModels.resource;
-import static com.berkleytechnologyservices.restdocs.spec.generator.test.ResourceModels.response;
+import static com.berkleytechnologyservices.restdocs.spec.generator.test.ResourceModels.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.contentOf;
 import static org.assertj.core.util.Lists.emptyList;
@@ -46,7 +43,7 @@ public class PostmanCollectionSpecificationGeneratorTest {
   @Test
   public void testGenerateHostWithPort() throws SpecificationGeneratorException {
 
-    ApiDetails apiDetails = new ApiDetails().hosts(Collections.singleton("example.com:8080"));
+    ApiDetails apiDetails = new ApiDetails().hosts(Collections.singletonList(new Host("example.com:8080")));
 
     String rawOutput = generator.generate(apiDetails, list(getMockResource()));
 
