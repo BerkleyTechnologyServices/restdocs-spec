@@ -229,7 +229,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-enforcer-plugin</artifactId>
-          <version>3.6.3</version>
+          <version>3.7.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-source-plugin</artifactId>
@@ -246,7 +246,7 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>build-helper-maven-plugin</artifactId>
-          <version>3.6.2</version>
+          <version>3.7.0</version>
         </plugin>
         <plugin>
           <groupId>org.eclipse.sisu</groupId>
