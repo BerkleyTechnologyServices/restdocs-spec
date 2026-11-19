@@ -3,7 +3,6 @@ package com.berkleytechnologyservices.restdocs.spec;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 public class ApiDetails {
 
@@ -16,7 +15,7 @@ public class ApiDetails {
   private String name;
   private String version;
   private String description;
-  private Set<String> hosts;
+  private List<Host> hosts;
   private String basePath;
   private List<String> schemes;
   private SpecificationFormat format;
@@ -28,7 +27,7 @@ public class ApiDetails {
   public ApiDetails() {
     this.name = DEFAULT_NAME;
     this.version = DEFAULT_VERSION;
-    this.hosts = Collections.singleton(DEFAULT_HOST);
+    this.hosts = Collections.singletonList(createDefaultHost());
     this.basePath = null;
     this.schemes = DEFAULT_SCHEMES;
     this.format = DEFAULT_FORMAT;
@@ -64,17 +63,21 @@ public class ApiDetails {
     return this;
   }
 
-  public Set<String> getHosts() {
+  public List<Host> getHosts() {
     return hosts;
   }
 
   public String getHost() {
-    return getHosts().stream().findFirst().orElseThrow();
+    return getHosts().get(0).getValue();
   }
 
-  public ApiDetails hosts(Set<String> hosts) {
-    this.hosts = (hosts != null && !hosts.isEmpty()) ? hosts : Collections.singleton(DEFAULT_HOST);
+  public ApiDetails hosts(List<Host> hosts) {
+    this.hosts = (hosts != null && !hosts.isEmpty()) ? hosts : Collections.singletonList(createDefaultHost());
     return this;
+  }
+
+  private Host createDefaultHost() {
+    return new Host(DEFAULT_HOST);
   }
 
   public String getBasePath() {

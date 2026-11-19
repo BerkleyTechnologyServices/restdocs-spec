@@ -1,11 +1,6 @@
 package com.berkleytechnologyservices.restdocs.mojo;
 
-import com.berkleytechnologyservices.restdocs.spec.ApiDetails;
-import com.berkleytechnologyservices.restdocs.spec.AuthConfig;
-import com.berkleytechnologyservices.restdocs.spec.Contact;
-import com.berkleytechnologyservices.restdocs.spec.Specification;
-import com.berkleytechnologyservices.restdocs.spec.SpecificationFormat;
-import com.berkleytechnologyservices.restdocs.spec.Tag;
+import com.berkleytechnologyservices.restdocs.spec.*;
 import com.berkleytechnologyservices.restdocs.spec.generator.SpecificationGeneratorException;
 import com.berkleytechnologyservices.restdocs.spec.generator.SpecificationGeneratorFactory;
 import com.epages.restdocs.apispec.model.ResourceModel;
@@ -21,7 +16,6 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -53,7 +47,7 @@ public abstract class AbstractGenerateMojo extends AbstractMojo {
    * More hosts to specify (OpenAPI 3.0)
    */
   @Parameter
-  private Set<String> hosts;
+  private List<Host> hosts;
 
   /**
    * Host
@@ -214,7 +208,7 @@ public abstract class AbstractGenerateMojo extends AbstractMojo {
         .name(name)
         .version(version)
         .description(description)
-        .hosts((hosts == null || hosts.isEmpty()) ? Collections.singleton(host) : hosts)
+        .hosts((hosts == null || hosts.isEmpty()) ? Collections.singletonList(new Host(host)) : hosts)
         .basePath(basePath)
         .schemes(schemes)
         .format(options.getFormat())
